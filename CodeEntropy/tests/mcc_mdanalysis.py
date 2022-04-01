@@ -721,6 +721,16 @@ if __name__ == "__main__":
 
     ############### UNITED ATOM LEVEL ##################
 
+    EF.compute_entropy_whole_molecule_level(u = u, 
+										 arg_baseMolecule = mainMolecule, 
+										 arg_hostDataContainer = dataContainer, 
+										 arg_outFile = "outfile_whole_molecule", 
+										 arg_moutFile = None,
+										 arg_nmdFile = None,
+										 arg_fScale = fScale,
+										 arg_tScale = tScale,
+										 arg_temper = temper,
+										 arg_verbose = 5)
 #END
 
 
