@@ -1,14 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Mar 31 12:36:57 2022
-
-@author: bmm66251
-"""
-
 import os, sys
 import numpy as nmp
 from CodeEntropy.Reader import GromacsReader, MDAnalysisReader
-from CodeEntropy.ClassCollection import DataContainer
 from CodeEntropy.ClassCollection import Atomselection as SEL
 from CodeEntropy.ClassCollection import BeadClasses as BC
 from CodeEntropy.ClassCollection import ModeClasses as MC
@@ -34,16 +26,16 @@ if __name__ == "__main__":
     # open output channel
     Writer.write_file(arg_filename=outfile)
     u = mda.Universe(tprfile, trrfile)
-    dataContainer = DataContainer.DataContainer(u)
+    mainMolecule, dataContainer = MDAnalysisReader.read_MDAnalysis_universe(u)
     # number of frames
-    numFrames = len(dataContainer.universe.trajectory)
+    numFrames = len(u.trajectory)
     Utils.printflush(f'Total number of frame = {numFrames}')
     mlevel = BC.BeadCollection("mlevel", dataContainer)
     allSel = u.select_atoms('all')
     
     wholeDNABead = BC.Bead(arg_atomList=allSel.indices, \
                             arg_numFrames=numFrames, \
-                            arg_hostDataContainer =dataContainer,\
+                            arg_hostDataContainer = dataContainer,\
                             arg_beadName = "WMOL",
                             arg_beadResi = 0,
                             arg_beadResn = "WMOL",
@@ -722,17 +714,4 @@ if __name__ == "__main__":
 
     ############### UNITED ATOM LEVEL ##################
 
-    EF.compute_entropy_whole_molecule_level(u = u, 
-										 arg_baseMolecule = mainMolecule, 
-										 arg_hostDataContainer = dataContainer, 
-										 arg_outFile = "outfile_whole_molecule", 
-										 arg_moutFile = None,
-										 arg_nmdFile = None,
-										 arg_fScale = fScale,
-										 arg_tScale = tScale,
-										 arg_temper = temper,
-										 arg_verbose = 5)
 #END
-
-
-
