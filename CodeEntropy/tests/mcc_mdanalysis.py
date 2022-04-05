@@ -455,6 +455,9 @@ if __name__ == "__main__":
     # initialize total entropy values specific to this level
     totalUAEntropyFF = 0
     totalUAEntropyTT = 0
+    
+    #Heavy atom array
+    heavyAtomArray = allSel.select_atoms("not name H*").indices
 
     # for each nucleotide, entropy at the UA level will be computed.
     # That is why, a loop is set to go through each nucleotide, get its UA beads,
@@ -479,10 +482,10 @@ if __name__ == "__main__":
         
         for iheavy in heavySel.indices:
             # select the atom itself and bonded hydrogen
-            iua = dataContainer.universe.select_atoms(f"index {iheavy} or (name H* and bonded index {iheavy})")
+            iua = allSel.select_atoms(f"index {iheavy} or (name H* and bonded index {iheavy})")
             
             # heavy atom name
-            iName = dataContainer.universe.atoms.names[iheavy]
+            iName = allSel.atoms.names[iheavy]
 
             # create a bead
             newBead = BC.Bead(arg_atomList=iua.indices,\
@@ -519,13 +522,12 @@ if __name__ == "__main__":
                                                          arg_orig=tOrigin)
 
         Utils.printflush('Done')
-
         Utils.printflush("Assigning Rotational Axes at the UA level->", end = ' ')
         for iBead in nidBeadCollection.listOfBeads:        
             # get the heavy atom
             # (should only contain one)
             # can save the list in attribute to save querry time
-            iheavy = list(filter(lambda idx: idx in dataContainer.universe.select_atoms("not name H*").indices, iBead.atomList))
+            iheavy = list(filter(lambda idx: idx in heavyAtomArray, iBead.atomList))
             try:
                 assert(len(iheavy) == 1)
                 iheavy = iheavy[0]
@@ -543,7 +545,7 @@ if __name__ == "__main__":
                 # get the average position lab coordinate !!! rewrite
                 avgHydrogenPosition = EF.get_avg_hpos(arg_atom= iheavy, \
                     arg_frame = iFrame, \
-                    u = u, \
+                    arg_selector = "all", \
                     arg_hostDataContainer = dataContainer)
 
                 # use the resultant vector to generate an 
