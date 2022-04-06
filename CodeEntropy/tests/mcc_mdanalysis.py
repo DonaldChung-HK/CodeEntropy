@@ -7,8 +7,6 @@ Created on Thu Mar 31 12:36:57 2022
 
 import os, sys
 import numpy as nmp
-from CodeEntropy.Reader import GromacsReader, MDAnalysisReader
-from CodeEntropy.ClassCollection import Atomselection as SEL
 from CodeEntropy.ClassCollection import BeadClasses as BC
 from CodeEntropy.ClassCollection import ModeClasses as MC
 from CodeEntropy.FunctionCollection import Utils
@@ -16,6 +14,7 @@ from CodeEntropy.FunctionCollection import UnitsAndConversions as UAC
 from CodeEntropy.FunctionCollection import CustomFunctions as CF
 from CodeEntropy.FunctionCollection import EntropyFunctions as EF
 from CodeEntropy.FunctionCollection import GeometricFunctions as GF
+from CodeEntropy.ClassCollection import DataContainer as DC
 from CodeEntropy.IO import Writer
 import MDAnalysis as mda
 
@@ -33,12 +32,12 @@ if __name__ == "__main__":
     # open output channel
     Writer.write_file(arg_filename=outfile)
     u = mda.Universe(tprfile, trrfile)
-    mainMolecule, dataContainer = MDAnalysisReader.read_MDAnalysis_universe(u)
+    dataContainer = DC.DataContainer(u)
     # number of frames
     numFrames = len(u.trajectory)
     Utils.printflush(f'Total number of frame = {numFrames}')
     mlevel = BC.BeadCollection("mlevel", dataContainer)
-    allSel = u.select_atoms('all')
+    allSel = dataContainer.universe.select_atoms('all')
     
     wholeDNABead = BC.Bead(arg_atomList=allSel.indices, \
                             arg_numFrames=numFrames, \
@@ -66,11 +65,11 @@ if __name__ == "__main__":
     # USE whole molecule's principal axes system (which changes every frame) for each atom
     allAtoms = allSel.indices
     for iFrame in range(numFrames):
-        selMOI, selAxes = mainMolecule\
+        selMOI, selAxes = dataContainer\
                           .get_principal_axes(arg_atomList = allAtoms,\
                                               arg_frame = iFrame, \
                                               arg_sorted=False)
-        selCOM = mainMolecule\
+        selCOM = dataContainer\
                  .get_center_of_mass(arg_atomList = allAtoms, \
                                      arg_frame = iFrame)
             
@@ -229,16 +228,17 @@ if __name__ == "__main__":
 
     # Define a bead collection at the N-level
     nlevel = BC.BeadCollection("nlevel", dataContainer)
+    allSel = dataContainer.universe.select_atoms('all')
     nlevel.listOfBeads = []
 
     # Add a bead corresponding to each residue/nucleotide to this collection
-    for nid in range(mainMolecule.numResidues):
-        baseResi = mainMolecule.residArray[nid]
-        baseResn = mainMolecule.resnameArray[nid]
+    for resid in allSel.residues.resids:
+        baseResi = resid
+        baseResn = allSel.residues.resnames[resid - 1] # -1 because residue is 1 indiced
         baseLabel = f"{baseResn}{baseResi}"
         Utils.printflush(baseLabel)
         
-        baseSel = u.select_atoms(f"resid {baseResi}")
+        baseSel = allSel.select_atoms(f"resid {baseResi}")
         
         baseBead = BC.Bead(arg_atomList=baseSel.indices, \
                            arg_numFrames=numFrames, \
@@ -264,13 +264,12 @@ if __name__ == "__main__":
     # setup translational and rotational axes
     Utils.printflush("Assigning Translation Axes at Nucleotide level->", end = ' ' )
     # USE whole molecule's principal axes system per atom per nucleotide for translational axes
-    allSel = u.select_atoms('all')
     allAtoms = allSel.indices
 
     for iFrame in range(numFrames):
         # compute molecular principal axes per frame
-        allMOI, allPAxes = mainMolecule.get_principal_axes(arg_atomList=allAtoms, arg_frame=iFrame, arg_sorted=False)
-        allCOM = mainMolecule.get_center_of_mass(arg_atomList=allAtoms, arg_frame=iFrame)
+        allMOI, allPAxes = dataContainer.get_principal_axes(arg_atomList=allAtoms, arg_frame=iFrame, arg_sorted=False)
+        allCOM = dataContainer.get_center_of_mass(arg_atomList=allAtoms, arg_frame=iFrame)
         
         dataContainer.update_translationAxesArray_at(arg_atomList=allAtoms,\
                                                      arg_frame=iFrame,\
@@ -280,14 +279,14 @@ if __name__ == "__main__":
 
     # Use an orthogonal axes system made of  C5', C4', C3'  atoms per nucleotide for rotational axes
     Utils.printflush("Assigning Rotational Axes at Nucleotide level->", end = ' ' )
-    for nid in range(mainMolecule.numResidues):
-        baseResi = mainMolecule.residArray[nid]
-        baseSel = u.select_atoms(f"resid {baseResi}")
+    for resid in allSel.residues.resids:
+        baseResi = resid
+        baseSel = allSel.select_atoms(f"resid {baseResi}")
         baseAtoms = baseSel.indices
         # Here you are selecting one atom so if you slice an array the shape will missmatch
-        baseC5Idx = u.select_atoms(f"resid {baseResi} and name C5'").indices[0]
-        baseC4Idx = u.select_atoms(f"resid {baseResi} and name C4'").indices[0]
-        baseC3Idx = u.select_atoms(f"resid {baseResi} and name C3'").indices[0]
+        baseC5Idx = baseSel.select_atoms(f"name C5'").indices[0]
+        baseC4Idx = baseSel.select_atoms(f"name C4'").indices[0]
+        baseC3Idx = baseSel.select_atoms(f"name C3'").indices[0]
         
         for iFrame in range(numFrames):
             c5coor = dataContainer._labCoords[iFrame, baseC5Idx]
@@ -451,38 +450,42 @@ if __name__ == "__main__":
     # number of frames
     numFrames = len(dataContainer.trajSnapshots)
     Utils.printflush(f'Total number of frame = {numFrames}')
+    allSel = dataContainer.universe.select_atoms('all')
 
     # initialize total entropy values specific to this level
     totalUAEntropyFF = 0
     totalUAEntropyTT = 0
+    
+    #Heavy atom array
+    heavyAtomArray = allSel.select_atoms("not name H*").indices
 
     # for each nucleotide, entropy at the UA level will be computed.
     # That is why, a loop is set to go through each nucleotide, get its UA beads,
     # and entropy is computed from that.
-    for nid in range(mainMolecule.numResidues):
-        baseResi = mainMolecule.residArray[nid]
-        baseResn = mainMolecule.resnameArray[nid]
+    for resid in allSel.residues.resids:
+        baseResi = resid
+        baseResn = allSel.residues.resnames[resid - 1] #again resid is 1 indexed
         baseLabel = f"{baseResn}{baseResi}"
         
         # create a bead collection 
-        nidBeadCollection = BC.BeadCollection(f"{baseLabel}_UA",dataContainer)
+        nidBeadCollection = BC.BeadCollection(f"{baseLabel}_UA", dataContainer)
         nidBeadCollection.listOfBeads = []
 
         # add UA beads to it (a heavy atom and its bonded hydrogens make a bead)
-        baseSel = u.select_atoms(f"resid {baseResi}")
-        baseC5Idx = u.select_atoms(f"resid {baseResi} and name C5'").indices[0]
-        baseC4Idx = u.select_atoms(f"resid {baseResi} and name C4'").indices[0]
-        baseC3Idx = u.select_atoms(f"resid {baseResi} and name C3'").indices[0]
+        baseSel = allSel.select_atoms(f"resid {baseResi}")
+        baseC5Idx = baseSel.select_atoms(f"name C5'").indices[0]
+        baseC4Idx = baseSel.select_atoms(f"name C4'").indices[0]
+        baseC3Idx = baseSel.select_atoms(f"name C3'").indices[0]
         
         # get all the heavy atoms and make seaparate beads from them
-        heavySel = u.select_atoms(f"resid {baseResi} and not name H*")
+        heavySel = baseSel.select_atoms(f"not name H*")
         
         for iheavy in heavySel.indices:
             # select the atom itself and bonded hydrogen
-            iua = u.select_atoms(f"index {iheavy} or (name H* and bonded index {iheavy})")
+            iua = allSel.select_atoms(f"index {iheavy} or (name H* and bonded index {iheavy})")
             
             # heavy atom name
-            iName = mainMolecule.atomNameArray[iheavy]
+            iName = allSel.atoms.names[iheavy]
 
             # create a bead
             newBead = BC.Bead(arg_atomList=iua.indices,\
@@ -519,12 +522,12 @@ if __name__ == "__main__":
                                                          arg_orig=tOrigin)
 
         Utils.printflush('Done')
-
         Utils.printflush("Assigning Rotational Axes at the UA level->", end = ' ')
         for iBead in nidBeadCollection.listOfBeads:        
             # get the heavy atom
             # (should only contain one)
-            iheavy = list(filter(lambda idx: not mainMolecule.is_hydrogen(idx), iBead.atomList))
+            # can save the list in attribute to save querry time
+            iheavy = list(filter(lambda idx: idx in heavyAtomArray, iBead.atomList))
             try:
                 assert(len(iheavy) == 1)
                 iheavy = iheavy[0]
@@ -542,7 +545,7 @@ if __name__ == "__main__":
                 # get the average position lab coordinate !!! rewrite
                 avgHydrogenPosition = EF.get_avg_hpos(arg_atom= iheavy, \
                     arg_frame = iFrame, \
-                    u = u, \
+                    arg_selector = "all", \
                     arg_hostDataContainer = dataContainer)
 
                 # use the resultant vector to generate an 
@@ -720,7 +723,6 @@ if __name__ == "__main__":
     Utils.printOut(outfile,'-'*60)
 
     ############### UNITED ATOM LEVEL ##################
-
 #END
 
 
