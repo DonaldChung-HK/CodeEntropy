@@ -1,0 +1,24 @@
+Total number of beads at the whole molecule level = 1
+FF Entropy (M level)                     : 47.5228 J/mol/K
+TT Entropy (M level)                     : 44.1326 J/mol/K
+------------------------------------------------------------
+        Hierarchy level. --> Nucleotide molecule <--        
+------------------------------------------------------------
+Total number of beads at the Nucleotide level = 8
+FF Entropy (N level)                     : 194.7700 J/mol/K
+TT Entropy (N level)                     : 185.2576 J/mol/K
+------------------------------------------------------------
+            Hierarchy level. --> United Atom <--            
+------------------------------------------------------------
+UATOM DA            1     133.998      17.451
+UATOM DA            2     193.167      15.609
+UATOM DA            3     192.448      14.287
+UATOM DA            4     207.565      17.554
+UATOM DT            5     136.395      19.343
+UATOM DT            6     191.273      17.542
+UATOM DT            7     187.412      17.531
+UATOM DT            8     197.244      19.249
+____________________________________________________________
+Total Entropy FF (UA level) :        1439.502 J/mol/K
+Total Entropy TT (UA level) :         138.566 J/mol/K
+------------------------------------------------------------

@@ -18,8 +18,11 @@ from CodeEntropy.FunctionCollection import GeometricFunctions as GF
 from CodeEntropy.ClassCollection import DataContainer as DC
 from CodeEntropy.IO import Writer
 import MDAnalysis as mda
+from datetime import datetime
+
 
 if __name__ == "__main__":
+    startTime = datetime.now()
     ############## REPLACE INPUTS ##############
     wd = os.path.dirname(os.path.abspath(__file__))
     tprfile = os.path.join(wd,"data/md_A4_dna.tpr")
@@ -722,7 +725,7 @@ if __name__ == "__main__":
     Utils.printOut(outfile,f"{'Total Entropy FF (UA level)':<25} : {totalUAEntropyFF:>15.3f} J/mol/K")
     Utils.printOut(outfile,f"{'Total Entropy TT (UA level)':<25} : {totalUAEntropyTT:>15.3f} J/mol/K")
     Utils.printOut(outfile,'-'*60)
-
+    print(datetime.now() - startTime)
     ############### UNITED ATOM LEVEL ##################
 #END
 
