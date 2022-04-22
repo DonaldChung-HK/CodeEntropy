@@ -11,8 +11,10 @@ from CodeEntropy.FunctionCollection import EntropyFunctions
 from CodeEntropy.IO import InputParser, Writer 
 from CodeEntropy.Reader import GromacsReader
 from CodeEntropy.ClassCollection import DataContainer as DC
+from datetime import datetime
 
 if __name__ == "__main__":
+    startTime = datetime.now()
     ############## REPLACE INPUTS ##############
     wd = os.path.dirname(os.path.abspath(__file__))
     tprfile = os.path.join(wd,"data/1AKI_ws.tpr")
@@ -65,16 +67,17 @@ if __name__ == "__main__":
     #     arg_verbose = 5
     # )
 
-    # EntropyFunctions.compute_topographical_entropy_method3(
-    #     arg_hostDataContainer = dataContainer, 
-    #     arg_selector = "all",
-    #     arg_outFile = outfile1_BB, 
-    #     arg_verbose = 5
-    # ) 
-    
-    EntropyFunctions.compute_topographical_entropy_AEM(
+    EntropyFunctions.compute_topographical_entropy_method3(
         arg_hostDataContainer = dataContainer, 
         arg_selector = "all",
-        arg_outFile = outfile1_SC, 
+        arg_outFile = outfile1_BB, 
         arg_verbose = 5
-    )
+    ) 
+    
+    # EntropyFunctions.compute_topographical_entropy_AEM(
+    #     arg_hostDataContainer = dataContainer, 
+    #     arg_selector = "all",
+    #     arg_outFile = outfile1_SC, 
+    #     arg_verbose = 5
+    # )
+    print(datetime.now() - startTime)
