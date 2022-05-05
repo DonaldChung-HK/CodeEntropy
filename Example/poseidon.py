@@ -24,5 +24,5 @@ energy = AnalysisFromFunction(lambda ag: ag.positions.copy(), select_atom_energy
 dimensions = AnalysisFromFunction(lambda ag: ag.dimensions.copy(), select_atom).run().results['timeseries']
 u2.load_new(coordinates, format=MemoryReader, forces=forces, velocities=energy, dimensions=dimensions)
 
-allMoleculeList = run_data_extractor.start(start=1, end=20, step=1, container=u2)
+allMoleculeList = run_data_extractor.start(container=u2, start=1, end=20)
 run_poseidon_analysis.start(allMoleculeList)
