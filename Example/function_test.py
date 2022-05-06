@@ -29,19 +29,7 @@ if __name__ == "__main__":
     #     arg_verbose = 3
     # )
 
-    # res_entropyFF, res_entropyTT = EF.compute_entropy_residue_level(
-    #     arg_hostDataContainer = dataContainer,
-    #     arg_outFile = outfile,
-    #     arg_selector = "all", 
-    #     arg_moutFile = None,
-    #     arg_nmdFile = None,
-    #     arg_fScale = 1,
-    #     arg_tScale = 1,
-    #     arg_temper = 300,
-    #     arg_verbose = 3
-    # )
-    
-    UA_entropyFF, UA_entropyTT = EF.compute_entropy_UA_level_multiprocess(
+    res_entropyFF, res_entropyTT = EF.compute_entropy_residue_level(
         arg_hostDataContainer = dataContainer,
         arg_outFile = outfile,
         arg_selector = "all", 
@@ -52,6 +40,18 @@ if __name__ == "__main__":
         arg_temper = 300,
         arg_verbose = 3
     )
+    
+    # UA_entropyFF, UA_entropyTT = EF.compute_entropy_UA_level_multiprocess(
+    #     arg_hostDataContainer = dataContainer,
+    #     arg_outFile = outfile,
+    #     arg_selector = "all", 
+    #     arg_moutFile = None,
+    #     arg_nmdFile = None,
+    #     arg_fScale = 1,
+    #     arg_tScale = 1,
+    #     arg_temper = 300,
+    #     arg_verbose = 3
+    # )
     
     print(datetime.now() - startTime)
     
