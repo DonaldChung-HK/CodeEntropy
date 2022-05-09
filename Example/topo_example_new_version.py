@@ -9,7 +9,6 @@ import MDAnalysis as mda
 from CodeEntropy.FunctionCollection import Utils
 from CodeEntropy.FunctionCollection import EntropyFunctions
 from CodeEntropy.IO import InputParser, Writer 
-from CodeEntropy.Reader import GromacsReader
 from CodeEntropy.ClassCollection import DataContainer as DC
 from datetime import datetime
 
@@ -31,53 +30,70 @@ if __name__ == "__main__":
     u = mda.Universe(tprfile, trrfile)
     dataContainer = DC.DataContainer(u)
     
-    # EntropyFunctions.compute_topographical_entropy0_SC(
-    #     arg_hostDataContainer = dataContainer, 
-    #     arg_selector = "all",
-    #     arg_outFile = outfile0_SC, 
-    #     arg_verbose = 5
-    # )
+    result_entropy0_SC = EntropyFunctions.compute_topographical_entropy0_SC(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = outfile0_SC, 
+        arg_verbose = 5
+    )
 
-    # EntropyFunctions.compute_topographical_entropy0_BB(
-    #     arg_hostDataContainer = dataContainer, 
-    #     arg_selector = "all",
-    #     arg_outFile = outfile0_BB, 
-    #     arg_verbose = 5
-    # ) 
+    print(f"result_entropy0_SC = {result_entropy0_SC}")
+
+    result_entropy0_BB = EntropyFunctions.compute_topographical_entropy0_BB(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = outfile0_BB, 
+        arg_verbose = 5
+    ) 
+
+    print(f"result_entropy0_BB = {result_entropy0_BB}")
 
 
-    # EntropyFunctions.compute_topographical_entropy1_SC(
-    #     arg_hostDataContainer = dataContainer, 
-    #     arg_selector = "all",
-    #     arg_outFile = outfile1_SC, 
-    #     arg_verbose = 5
-    # )
+    result_entropy1_SC = EntropyFunctions.compute_topographical_entropy1_SC(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = outfile1_SC, 
+        arg_verbose = 5
+    )
 
-    # EntropyFunctions.compute_topographical_entropy1_BB(
-    #     arg_hostDataContainer = dataContainer, 
-    #     arg_selector = "all",
-    #     arg_outFile = outfile1_BB, 
-    #     arg_verbose = 5
-    # ) 
-    
-    # EntropyFunctions.compute_topographical_entropy_method4(
-    #     arg_hostDataContainer = dataContainer, 
-    #     arg_selector = "all",
-    #     arg_outFile = outfile1_SC, 
-    #     arg_verbose = 5
-    # )
+    print(f"result_entropy1_SC= {result_entropy1_SC}")
 
-    EntropyFunctions.compute_topographical_entropy_method3(
+
+    result_entropy1_BB = EntropyFunctions.compute_topographical_entropy1_BB(
         arg_hostDataContainer = dataContainer, 
         arg_selector = "all",
         arg_outFile = outfile1_BB, 
         arg_verbose = 5
     ) 
+    print(f"result_entropy1_BB= {result_entropy1_BB}")
     
-    # EntropyFunctions.compute_topographical_entropy_AEM(
-    #     arg_hostDataContainer = dataContainer, 
-    #     arg_selector = "all",
-    #     arg_outFile = outfile1_SC, 
-    #     arg_verbose = 5
-    # )
+    result_entropy4 = EntropyFunctions.compute_topographical_entropy_method4(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = outfile1_SC, 
+        arg_verbose = 5
+    )
+
+    print(f"result_entropy4 = {result_entropy4}")
+
+
+    
+    result_entropyAEM = EntropyFunctions.compute_topographical_entropy_AEM(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = outfile1_SC, 
+        arg_verbose = 5
+    )
+
+    print(f"result_entropyAEM = {result_entropyAEM}")
+
+    # Demanding computation if large amount of Dihedral
+    result_entropy3 = EntropyFunctions.compute_topographical_entropy_method3(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = outfile1_BB, 
+        arg_verbose = 5
+    ) 
+    print(f"result_entropy3 = {result_entropy3}")
+
     print(datetime.now() - startTime)
