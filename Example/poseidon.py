@@ -36,7 +36,7 @@ def load_data():
 def main():
     u2 = load_data() # this should drop all the intermediate values loaded which might benefit memory
     allMoleculeList = run_data_extractor.start(container=u2, start=1, end=20)
-    run_poseidon_analysis.start(allMoleculeList)
+    run_poseidon_analysis.start(allMoleculeList, verbose=True)
 
 if __name__ == '__main__':
     main()
