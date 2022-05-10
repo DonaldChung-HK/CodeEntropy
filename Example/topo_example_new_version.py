@@ -66,15 +66,15 @@ if __name__ == "__main__":
         arg_verbose = 5
     ) 
     print(f"result_entropy1_BB= {result_entropy1_BB}")
-    
-    result_entropy4 = EntropyFunctions.compute_topographical_entropy_method4(
-        arg_hostDataContainer = dataContainer, 
-        arg_selector = "all",
-        arg_outFile = outfile1_SC, 
-        arg_verbose = 5
-    )
+    # #work in progress
+    # result_entropy4 = EntropyFunctions.compute_topographical_entropy_method4(
+    #     arg_hostDataContainer = dataContainer, 
+    #     arg_selector = "all",
+    #     arg_outFile = outfile1_SC, 
+    #     arg_verbose = 5
+    # )
 
-    print(f"result_entropy4 = {result_entropy4}")
+    # print(f"result_entropy4 = {result_entropy4}")
 
 
     
