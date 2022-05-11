@@ -2,7 +2,7 @@ import os, sys
 import MDAnalysis as mda
 from MDAnalysis.analysis.base import AnalysisFromFunction
 from MDAnalysis.coordinates.memory import MemoryReader
-
+import pandas as pd
 from CodeEntropy.ClassCollection.PoseidonClass import Poseidon
 
 
@@ -16,6 +16,7 @@ def main():
     main = mda.Universe(topo_file, traj_file)
     poseidon_object = Poseidon(container=main, start=1, end=20, water=('SOL',), excludedResnames=("CL",))
     solventData, soluteData = poseidon_object.run_analysis(verbose=True)
+    pd.set_option("display.max_rows", None, "display.max_columns", None)
     print("------------------------------SolventData------------------------------")
     print(solventData)
     print("------------------------------SoluteData------------------------------")
