@@ -1,3 +1,7 @@
+##########################################################################################
+# !!!!!!!!!!!The 1AKI_prod.trr trajectory is too big and can't be included in the repo
+##########################################################################################
+
 import os, sys
 import MDAnalysis as mda
 from MDAnalysis.analysis.base import AnalysisFromFunction
