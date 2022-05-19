@@ -19,12 +19,7 @@ def main():
     # loading data into individual universe
     main = mda.Universe(topo_file, traj_file)
     poseidon_object = Poseidon(container=main, start=1, end=20, water=('SOL',), excludedResnames=("CL",))
-    solventData, soluteData = poseidon_object.run_analysis(verbose=True)
-    pd.set_option("display.max_rows", None, "display.max_columns", None)
-    print("------------------------------SolventData------------------------------")
-    print(solventData)
-    print("------------------------------SoluteData------------------------------")
-    print(soluteData)
+    poseidon_object.run_analysis(level_list=['moleculeLevel', 'residLevel_resname', 'atomLevel', 'soluteContact'], verbose=False)
 
 if __name__ == '__main__':
     main()

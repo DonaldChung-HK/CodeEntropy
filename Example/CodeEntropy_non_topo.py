@@ -8,19 +8,19 @@ if __name__ == "__main__":
     ############## REPLACE INPUTS ##############
     startTime = datetime.now()
     wd = os.path.dirname(os.path.abspath(__file__))
-    tprfile = os.path.join(wd,"data/1AKI_ws.tpr")
-    trrfile = os.path.join(wd,"data/1AKI_ws.trr")
-    outfile = os.path.join(wd,"1AKI_mcc.out")
+    tprfile = os.path.join(wd,"data/1AKI_prod.tpr")
+    trrfile = os.path.join(wd,"data/1AKI_prod.trr")
+    outfile = "1AKI_mcc.out"
     tScale = 1
     fScale = 1
     temper = 300 #K
     u = mda.Universe(tprfile, trrfile)
-    dataContainer = DC.DataContainer(u)
+    dataContainer = DC.DataContainer(u, start=0, end=20, step=1)
 
     wm_entropyFF, wm_entropyTT = EF.compute_entropy_whole_molecule_level(
         arg_hostDataContainer = dataContainer,
         arg_outFile = outfile,
-        arg_selector = "all", 
+        arg_selector = "protein", 
         arg_moutFile = None,
         arg_nmdFile = None,
         arg_fScale = 1,
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     res_entropyFF, res_entropyTT = EF.compute_entropy_residue_level(
         arg_hostDataContainer = dataContainer,
         arg_outFile = outfile,
-        arg_selector = "all", 
+        arg_selector = "protein", 
         arg_moutFile = None,
         arg_nmdFile = None,
         arg_fScale = 1,
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     UA_entropyFF, UA_entropyTT = EF.compute_entropy_UA_level_multiprocess(
         arg_hostDataContainer = dataContainer,
         arg_outFile = outfile,
-        arg_selector = "all", 
+        arg_selector = "protein", 
         arg_moutFile = None,
         arg_nmdFile = None,
         arg_fScale = 1,
