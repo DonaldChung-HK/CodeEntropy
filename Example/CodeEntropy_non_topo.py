@@ -2,64 +2,93 @@ import os, sys
 import MDAnalysis as mda
 from CodeEntropy.FunctionCollection import EntropyFunctions as EF
 from CodeEntropy.ClassCollection import DataContainer as DC
+from CodeEntropy.IO import MDAUniverseHelper as MDAHelper
+import pandas as pd
 from datetime import datetime
+
+
 
 if __name__ == "__main__":
     ############## REPLACE INPUTS ##############
     startTime = datetime.now()
-    wd = os.path.dirname(os.path.abspath(__file__))
-    tprfile = os.path.join(wd,"data/1AKI_prod.tpr")
-    trrfile = os.path.join(wd,"data/1AKI_prod.trr")
-    outfile = "1AKI_mcc.out"
-    tScale = 1
-    fScale = 1
-    temper = 300 #K
+    data_dir = os.path.dirname(os.path.abspath(__file__))
+    tprfile = os.path.join(data_dir,"data/1AKI_prod.tpr")
+    trrfile = os.path.join(data_dir,"data/1AKI_prod.trr")
+    outfile = None
+    tScale = 1.0
+    fScale = 1.0
+    temper = 300.0 #K
     u = mda.Universe(tprfile, trrfile)
-    dataContainer = DC.DataContainer(u, start=0, end=20, step=1)
+    selection_string = 'protein'
+    start = 3
+    end = 67
+    step = 2
+    thread = 8
+    results_df = pd.DataFrame(columns=['Method and Level','Type', 'result'])
+    reduced_frame = MDAHelper.new_U_select_frame(u,  start, end, step)
+    reduced_frame_name = f"{(end - start)//2}_frame_dump"
+    reduced_frame_filename = MDAHelper.write_universe(reduced_frame, reduced_frame_name)
+    reduced_atom = MDAHelper.new_U_select_atom(reduced_frame, 'protein')
+    reduced_atom_name = f"{(end - start)//2}_frame_dump_strip_solvent"
+    reduced_atom_filename = MDAHelper.write_universe(reduced_atom, reduced_atom_name)
+    dataContainer = DC.DataContainer(reduced_atom)
 
     wm_entropyFF, wm_entropyTT = EF.compute_entropy_whole_molecule_level(
         arg_hostDataContainer = dataContainer,
         arg_outFile = outfile,
         arg_selector = "protein", 
-        arg_moutFile = None,
-        arg_nmdFile = None,
-        arg_fScale = 1,
-        arg_tScale = 1,
-        arg_temper = 300,
-        arg_verbose = 3
+        arg_moutFile = 'WholeMolecule_matrix.out',
+        arg_nmdFile = 'WholeMolecule_mode_spectra.out',
+        arg_fScale = fScale,
+        arg_tScale = tScale,
+        arg_temper = temper,
+        arg_verbose = 5
     )
 
     print(f"wm_entropyFF = {wm_entropyFF}")
     print(f"wm_entropyTT = {wm_entropyTT}")
-
+    newRow = pd.DataFrame({'Method and Level': ['Whole molecule', 'Whole molecule'],
+                            'Type':['FF Entropy (J/mol/K)', 'TT Entropy (J/mol/K)'],
+                            'result': [wm_entropyFF, wm_entropyTT],})
+    results_df = pd.concat([results_df, newRow], ignore_index=True)
     res_entropyFF, res_entropyTT = EF.compute_entropy_residue_level(
         arg_hostDataContainer = dataContainer,
         arg_outFile = outfile,
-        arg_selector = "protein", 
-        arg_moutFile = None,
-        arg_nmdFile = None,
-        arg_fScale = 1,
-        arg_tScale = 1,
-        arg_temper = 300,
-        arg_verbose = 3
+        arg_selector = 'all', 
+        arg_moutFile = 'ResidueLevel_matrix.out',
+        arg_nmdFile = 'ResidueLevel_mode_spectra.out',
+        arg_fScale = fScale,
+        arg_tScale = tScale,
+        arg_temper = temper,
+        arg_verbose = 5
     )
+    print(res_entropyFF)
+    print(res_entropyTT)
+    newRow = pd.DataFrame({'Method and Level': ['Residue', 'Residue'],
+                            'Type':['FF Entropy (J/mol/K)', 'TT Entropy (J/mol/K)'],
+                            'result': [res_entropyFF, res_entropyTT],})
+    results_df = pd.concat([results_df, newRow], ignore_index=True)
 
-    print(f"res_entropyFF = {res_entropyFF}")
-    print(f"res_entropyTT = {res_entropyTT}")
-    
-    UA_entropyFF, UA_entropyTT = EF.compute_entropy_UA_level_multiprocess(
+
+    UA_entropyFF, UA_entropyTT = EF.compute_entropy_UA_level(
         arg_hostDataContainer = dataContainer,
         arg_outFile = outfile,
-        arg_selector = "protein", 
-        arg_moutFile = None,
-        arg_nmdFile = None,
-        arg_fScale = 1,
-        arg_tScale = 1,
-        arg_temper = 300,
-        arg_verbose = 3
+        arg_selector = 'all', 
+        arg_moutFile = 'AtomLevel_matrix.out',
+        arg_nmdFile = 'AtomLevel_mode_spectra.out',
+        arg_fScale = fScale,
+        arg_tScale = tScale,
+        arg_temper = temper,
+        arg_verbose = 1,
+        arg_csv_out= 'AtomLevel_bead_entropy.csv',
     )
     print(f"UA_entropyFF = {UA_entropyFF}")
     print(f"UA_entropyTT = {UA_entropyTT}")
+    newRow = pd.DataFrame({'Method and Level': ['United atom', 'United atom'],
+                            'Type':['FF Entropy (J/mol/K)', 'TT Entropy (J/mol/K)'],
+                            'result': [UA_entropyFF, UA_entropyTT],})
+    results_df = pd.concat([results_df, newRow], ignore_index=True)
+
     
-    print(datetime.now() - startTime)
-    
+    # print(datetime.now() - startTime)
+    results_df.to_csv(f'molecule_entropy_result.csv', index=False)
