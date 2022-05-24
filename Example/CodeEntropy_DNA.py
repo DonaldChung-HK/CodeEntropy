@@ -13,19 +13,19 @@ if __name__ == "__main__":
     ############## REPLACE INPUTS ##############
     startTime = datetime.now()
     data_dir = os.path.dirname(os.path.abspath(__file__))
-    tprfile = os.path.join(data_dir,"data/1AKI_prod.tpr")
-    trrfile = os.path.join(data_dir,"data/1AKI_prod.trr")
+    tprfile = os.path.join(data_dir,"data/md_A4_dna.tpr")
+    trrfile = os.path.join(data_dir,"data/md_A4_dna_xf.trr")
     outfile = None
     tScale = 1.0
     fScale = 1.0
     temper = 300.0 #K
     u = mda.Universe(tprfile, trrfile)
-    selection_string = 'protein'
+    selection_string = 'all'
     start = 3
-    end = 67
-    step = 2
+    end = 40
+    step = 1
     thread = 8
-    axis_list = ['C', 'CA', 'N']
+    axis_list = ["C5'", "C4'", "C3'"]
     if start == None:
         start = 0
     if end == None:
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     wm_entropyFF, wm_entropyTT = EF.compute_entropy_whole_molecule_level(
         arg_hostDataContainer = dataContainer,
         arg_outFile = outfile,
-        arg_selector = "protein", 
+        arg_selector = selection_string, 
         arg_moutFile = 'WholeMolecule_matrix.out',
         arg_nmdFile = 'WholeMolecule_mode_spectra.out',
         arg_fScale = fScale,
