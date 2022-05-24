@@ -27,7 +27,7 @@ if __name__ == "__main__":
     wd = os.path.dirname(os.path.abspath(__file__))
     tprfile = os.path.join(wd,"data/md_A4_dna.tpr")
     trrfile = os.path.join(wd,"data/md_A4_dna_xf.trr")
-    outfile = os.path.join(wd,"dna_mcc.out")
+    outfile = "dna_mcc.out"
     tScale = 1
     fScale = 1
     temper = 300 #K
