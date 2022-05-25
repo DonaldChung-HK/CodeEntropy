@@ -18,11 +18,7 @@ if __name__ == "__main__":
     wd = os.path.dirname(os.path.abspath(__file__))
     tprfile = os.path.join(wd,"data/1AKI_ws.tpr")
     trrfile = os.path.join(wd,"data/1AKI_ws.trr")
-    outfile = os.path.join(wd,"dna_mcc.out")
-    outfile0_SC = os.path.join(wd,"dna_mcc_0_SC.out")
-    outfile0_BB = os.path.join(wd,"dna_mcc_0_BB.out")
-    outfile1_SC = os.path.join(wd,"dna_mcc_1_SC.out")
-    outfile1_BB = os.path.join(wd,"dna_mcc_1_BB.out")
+    outfile = "topo.out"
     tScale = 1
     fScale = 1
     temper = 300 #K
@@ -33,7 +29,7 @@ if __name__ == "__main__":
     result_entropy0_SC = EntropyFunctions.compute_topographical_entropy0_SC(
         arg_hostDataContainer = dataContainer, 
         arg_selector = "all",
-        arg_outFile = outfile0_SC, 
+        arg_outFile = outfile, 
         arg_verbose = 5
     )
 
@@ -42,7 +38,7 @@ if __name__ == "__main__":
     result_entropy0_BB = EntropyFunctions.compute_topographical_entropy0_BB(
         arg_hostDataContainer = dataContainer, 
         arg_selector = "all",
-        arg_outFile = outfile0_BB, 
+        arg_outFile = outfile, 
         arg_verbose = 5
     ) 
 
@@ -52,7 +48,7 @@ if __name__ == "__main__":
     result_entropy1_SC = EntropyFunctions.compute_topographical_entropy1_SC(
         arg_hostDataContainer = dataContainer, 
         arg_selector = "all",
-        arg_outFile = outfile1_SC, 
+        arg_outFile = outfile, 
         arg_verbose = 5
     )
 
@@ -62,7 +58,7 @@ if __name__ == "__main__":
     result_entropy1_BB = EntropyFunctions.compute_topographical_entropy1_BB(
         arg_hostDataContainer = dataContainer, 
         arg_selector = "all",
-        arg_outFile = outfile1_BB, 
+        arg_outFile = outfile, 
         arg_verbose = 5
     ) 
     print(f"result_entropy1_BB= {result_entropy1_BB}")
@@ -81,19 +77,19 @@ if __name__ == "__main__":
     result_entropyAEM = EntropyFunctions.compute_topographical_entropy_AEM(
         arg_hostDataContainer = dataContainer, 
         arg_selector = "all",
-        arg_outFile = outfile1_SC, 
+        arg_outFile = outfile, 
         arg_verbose = 5
     )
 
     print(f"result_entropyAEM = {result_entropyAEM}")
 
-    # Demanding computation if large amount of Dihedral
-    result_entropy3 = EntropyFunctions.compute_topographical_entropy_method3(
-        arg_hostDataContainer = dataContainer, 
-        arg_selector = "all",
-        arg_outFile = outfile1_BB, 
-        arg_verbose = 5
-    ) 
-    print(f"result_entropy3 = {result_entropy3}")
+    # # Demanding computation if large amount of Dihedral
+    # result_entropy3 = EntropyFunctions.compute_topographical_entropy_method3(
+    #     arg_hostDataContainer = dataContainer, 
+    #     arg_selector = "all",
+    #     arg_outFile = outfile1_BB, 
+    #     arg_verbose = 5
+    # ) 
+    # print(f"result_entropy3 = {result_entropy3}")
 
     print(datetime.now() - startTime)
