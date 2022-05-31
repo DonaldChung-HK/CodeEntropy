@@ -39,15 +39,9 @@ def main():
     print(f"finished populate object: this step = {populate_object_time - load_data_time}; total ={populate_object_time - start}")
     analysis_time = dt.datetime.now()
     print(f"finished analysis: this step = {analysis_time - populate_object_time}; total ={analysis_time - start}")
-    result = poseidon_object.run_analysis(level_list = ['atomLevel'], verbose=False)
-    print("------------------------------SolventData------------------------------")
-    print(result[0])
-    print("------------------------------SoluteData------------------------------")
-    print(result[1])
-    try:
-        print("------------------------------Contact matrix------------------------------")
-        print(result[2])
-    except:
-        pass
+    result = poseidon_object.run_analysis(level_list = ['moleculeLevel','atomLevel'], verbose=False)
+    print(result.keys())
+    print(result)
+
 
 main()
