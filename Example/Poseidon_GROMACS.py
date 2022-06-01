@@ -7,7 +7,7 @@ import MDAnalysis as mda
 from MDAnalysis.analysis.base import AnalysisFromFunction
 from MDAnalysis.coordinates.memory import MemoryReader
 import pandas as pd
-from CodeEntropy.ClassCollection.PoseidonClass import Poseidon
+from CodeEntropy.ClassCollection.PoseidonClass import Poseidon, Poseidon_mp
 
 
 def main():
@@ -18,8 +18,8 @@ def main():
     traj_file = os.path.join(wd,"data/1AKI_prod.trr")
     # loading data into individual universe
     main = mda.Universe(topo_file, traj_file)
-    poseidon_object = Poseidon(container=main, start=1, end=20, water=('SOL',), excludedResnames=("CL",))
-    poseidon_object.run_analysis(level_list=['moleculeLevel', 'residLevel_resname', 'atomLevel', 'soluteContact'], verbose=False)
+    poseidon_object = Poseidon_mp(container=main, start=0, end=20, water=('SOL',), excludedResnames=("CL",), verbose=True, thread=4)
+    poseidon_object.run_analysis(level_list=['moleculeLevel', 'residLevel_resname', 'atomLevel', 'soluteContact'], verbose=True)
 
 if __name__ == '__main__':
     main()
