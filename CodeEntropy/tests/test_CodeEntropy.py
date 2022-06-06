@@ -55,6 +55,6 @@ def test_CodeEntropy_res_level():
         arg_verbose = 5,
         arg_axis_list = axis_list,
     )
-    assert res_entropyFF == 914.93511803752938
+    assert res_entropyFF == 194.93511803752938
     assert res_entropyTT == 285.7213867860228
 
