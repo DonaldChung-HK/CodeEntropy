@@ -28,8 +28,8 @@ def test_CodeEntropy_whole_molecule():
         arg_temper = temper,
         arg_verbose = 5
     )
-    assert wm_entropyFF == pytest.approx(47.230063169278864, 0.00001)
-    assert wm_entropyTT == pytest.approx(44.35619230374928, 0.00001)
+    assert wm_entropyFF == pytest.approx(47.230063169278864)
+    assert wm_entropyTT == pytest.approx(44.35619230374928)
 
 def test_CodeEntropy_res_level():
     """test for computing entropy at residue level"""
@@ -55,6 +55,5 @@ def test_CodeEntropy_res_level():
         arg_verbose = 5,
         arg_axis_list = axis_list,
     )
-    assert res_entropyFF == pytest.approx(194.93511803752938, 0.00001)
-    assert res_entropyTT == pytest.approx(285.7213867860228, 0.00001)
-
+    assert res_entropyFF == pytest.approx(194.93511803752938)
+    assert res_entropyTT == pytest.approx(285.7213867860228)
