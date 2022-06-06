@@ -1,15 +1,60 @@
-"""
-Unit and regression test for the CodeEntropy package.
-"""
-
-# Import package, test suite, and other packages as needed
-import sys
+import os, sys
+import MDAnalysis as mda
+from CodeEntropy.FunctionCollection import EntropyFunctions as EF
+from CodeEntropy.ClassCollection import DataContainer as DC
 
 import pytest
 
-import CodeEntropy
+def test_CodeEntropy_whole_molecule():
+    """test for computing entropy at whole molecule level"""
+    data_dir = os.path.dirname(os.path.abspath(__file__))
+    tprfile = os.path.join(data_dir,"data/md_A4_dna.tpr")
+    trrfile = os.path.join(data_dir,"data/md_A4_dna_xf.trr")
+    tScale = 1.0
+    fScale = 1.0
+    temper = 300.0 #K
+    u = mda.Universe(tprfile, trrfile)
+    thread = 8
+    axis_list = ["C5'", "C4'", "C3'"]
+    dataContainer = DC.DataContainer(u)
+    wm_entropyFF, wm_entropyTT = EF.compute_entropy_whole_molecule_level(
+        arg_hostDataContainer = dataContainer,
+        arg_outFile = None,
+        arg_selector = "all", 
+        arg_moutFile = None,
+        arg_nmdFile = None,
+        arg_fScale = fScale,
+        arg_tScale = tScale,
+        arg_temper = temper,
+        arg_verbose = 5
+    )
+    assert wm_entropyFF == 47.230063169278864
+    assert wm_entropyTT == 44.35619230374928
 
+def test_CodeEntropy_res_level():
+    """test for computing entropy at residue level"""
+    data_dir = os.path.dirname(os.path.abspath(__file__))
+    tprfile = os.path.join(data_dir,"data/md_A4_dna.tpr")
+    trrfile = os.path.join(data_dir,"data/md_A4_dna_xf.trr")
+    tScale = 1.0
+    fScale = 1.0
+    temper = 300.0 #K
+    u = mda.Universe(tprfile, trrfile)
+    thread = 8
+    axis_list = ["C5'", "C4'", "C3'"]
+    dataContainer = DC.DataContainer(u)
+    res_entropyFF, res_entropyTT = EF.compute_entropy_residue_level(
+        arg_hostDataContainer = dataContainer,
+        arg_outFile = None,
+        arg_selector = 'all', 
+        arg_moutFile = None,
+        arg_nmdFile = None,
+        arg_fScale = fScale,
+        arg_tScale = tScale,
+        arg_temper = temper,
+        arg_verbose = 5,
+        arg_axis_list = axis_list,
+    )
+    assert res_entropyFF == 914.93511803752938
+    assert res_entropyTT == 285.7213867860228
 
-def test_CodeEntropy_imported():
-    """Sample test, will always pass so long as import statement worked."""
-    assert "CodeEntropy" in sys.modules

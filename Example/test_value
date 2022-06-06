@@ -1,0 +1,851 @@
+Number of atoms      : 254
+Number of frames     : 101
+------------------------------------------------------------
+          Hierarchy level. --> Whole molecule <--           
+------------------------------------------------------------
+Total number of beads at the whole molecule level = 1
+Assigning Translation and Rotation Axes @ whole molecule level-> Done
+Updating Local coordinates-> Done
+Updating Local forces-> Done
+Updating Local torques-> Done
+Weighting forces and torques-> Done
+Updating the submatrices ... 
+[    0,    0] Finished updating submatrix FF
+[    0,    0] Finished updating submatrix TT
+Done
+Generating Quadrants-> Done
+Diagonalizing-> Done
+Changing the units of eigen values to SI units-> Done
+Sorting spectrum in ascending order of frequencies-> Done
+Entropy values:
+FF Entropy (Whole mol level)             : 47.2301 J/mol/K
+TT Entropy (Whole mol level)             : 44.3562 J/mol/K
+wm_entropyFF = 47.230063169278864
+wm_entropyTT = 44.35619230374928
+------------------------------------------------------------
+             Hierarchy level. --> Residues <--              
+------------------------------------------------------------
+DA1
+DA2
+DA3
+DA4
+DT5
+DT6
+DT7
+DT8
+Total number of beads at the residue level = 8
+Assigning Translation Axes @ residue level-> Done
+Assigning Rotational Axes @ residue level->
+    1     2     3     4     5 
+    6     7     8 
+Done
+Updating Local forces-> Done
+Updating Local coordinates-> Done
+Updating Local torques-> Done
+Weighting forces and torques-> Done
+Updating the submatrices ... 
+[    0,    0] [    0,    1] [    0,    2] [    0,    3] [    0,    4] [    0,    5] [    0,    6] [    0,    7] [    1,    1] [    1,    2] [    1,    3] [    1,    4] [    1,    5] [    1,    6] [    1,    7] [    2,    2] [    2,    3] [    2,    4] [    2,    5] [    2,    6] [    2,    7] [    3,    3] [    3,    4] [    3,    5] [    3,    6] [    3,    7] [    4,    4] [    4,    5] [    4,    6] [    4,    7] [    5,    5] [    5,    6] [    5,    7] [    6,    6] [    6,    7] [    7,    7] Finished updating submatrix FF
+[    0,    0] [    0,    1] [    0,    2] [    0,    3] [    0,    4] [    0,    5] [    0,    6] [    0,    7] [    1,    1] [    1,    2] [    1,    3] [    1,    4] [    1,    5] [    1,    6] [    1,    7] [    2,    2] [    2,    3] [    2,    4] [    2,    5] [    2,    6] [    2,    7] [    3,    3] [    3,    4] [    3,    5] [    3,    6] [    3,    7] [    4,    4] [    4,    5] [    4,    6] [    4,    7] [    5,    5] [    5,    6] [    5,    7] [    6,    6] [    6,    7] [    7,    7] Finished updating submatrix TT
+Done
+Generating Quadrants-> Done
+Diagonalizing-> Done
+Changing the units of eigen values to SI units-> Done
+Sorting spectrum in ascending order of frequencies-> Done
+Entropy values:
+FF Entropy (Residue level)               : 194.9351 J/mol/K
+TT Entropy (Residue level)               : 285.7214 J/mol/K
+194.93511803752938
+285.7213867860228
+------------------------------------------------------------
+            Hierarchy level. --> United Atom <--            
+------------------------------------------------------------
+Working on resid : DA1
+Total number of UA beads in residue DA1 : 18
+Assigning Translation Axes at the UA level-> Done
+Assigning Rotational Axes at the UA level-> Done
+Updating Local forces-> Done
+Updating Local torques-> Done
+Weighting forces and torques-> Done
+Updating the submatrices ... 
+Done
+Generating Quadrants-> Done
+A shape change has occured (54,54) -> (21, 21)
+Diagonalizing-> Done
+Changing the units of eigen values to SI units-> Done
+Sorting spectrum in ascending order of frequencies-> Done
+Entropy values:
+FF Entropy (UA for DA1)                  : 133.9980 J/mol/K
+TT Entropy (UA for DA1)                  : 10.9417 J/mol/K
+
+
+
+Working on resid : DA2
+Total number of UA beads in residue DA2 : 21
+Assigning Translation Axes at the UA level-> Done
+Assigning Rotational Axes at the UA level-> Done
+Updating Local forces-> Done
+Updating Local torques-> Done
+Weighting forces and torques-> Done
+Updating the submatrices ... 
+Done
+Generating Quadrants-> Done
+A shape change has occured (63,63) -> (19, 19)
+Diagonalizing-> Done
+Changing the units of eigen values to SI units-> Done
+Sorting spectrum in ascending order of frequencies-> Done
+Entropy values:
+FF Entropy (UA for DA2)                  : 193.1668 J/mol/K
+TT Entropy (UA for DA2)                  : 10.2002 J/mol/K
+
+
+
+Working on resid : DA3
+Total number of UA beads in residue DA3 : 21
+Assigning Translation Axes at the UA level-> Done
+Assigning Rotational Axes at the UA level-> Done
+Updating Local forces-> Done
+Updating Local torques-> Done
+Weighting forces and torques-> Done
+Updating the submatrices ... 
+Done
+Generating Quadrants-> Done
+A shape change has occured (63,63) -> (19, 19)
+Diagonalizing-> Done
+Changing the units of eigen values to SI units-> Done
+Sorting spectrum in ascending order of frequencies-> Done
+Entropy values:
+FF Entropy (UA for DA3)                  : 192.4479 J/mol/K
+TT Entropy (UA for DA3)                  : 8.8534 J/mol/K
+
+
+
+Working on resid : DA4
+Total number of UA beads in residue DA4 : 21
+Assigning Translation Axes at the UA level-> Done
+Assigning Rotational Axes at the UA level-> Done
+Updating Local forces-> Done
+Updating Local torques-> Done
+Weighting forces and torques-> Done
+Updating the submatrices ... 
+Done
+Generating Quadrants-> Done
+A shape change has occured (63,63) -> (21, 21)
+Diagonalizing-> Done
+Changing the units of eigen values to SI units-> Done
+Sorting spectrum in ascending order of frequencies-> Done
+Entropy values:
+FF Entropy (UA for DA4)                  : 207.5653 J/mol/K
+TT Entropy (UA for DA4)                  : 11.0983 J/mol/K
+
+
+
+Working on resid : DT5
+Total number of UA beads in residue DT5 : 17
+Assigning Translation Axes at the UA level-> Done
+Assigning Rotational Axes at the UA level-> Done
+Updating Local forces-> Done
+Updating Local torques-> Done
+Weighting forces and torques-> Done
+Updating the submatrices ... 
+Done
+Generating Quadrants-> Done
+A shape change has occured (51,51) -> (21, 21)
+Diagonalizing-> Done
+Changing the units of eigen values to SI units-> Done
+Sorting spectrum in ascending order of frequencies-> Done
+Entropy values:
+FF Entropy (UA for DT5)                  : 136.3948 J/mol/K
+TT Entropy (UA for DT5)                  : 17.3126 J/mol/K
+
+
+
+Working on resid : DT6
+Total number of UA beads in residue DT6 : 20
+Assigning Translation Axes at the UA level-> Done
+Assigning Rotational Axes at the UA level-> Done
+Updating Local forces-> Done
+Updating Local torques-> Done
+Weighting forces and torques-> Done
+Updating the submatrices ... 
+Done
+Generating Quadrants-> Done
+A shape change has occured (60,60) -> (19, 19)
+Diagonalizing-> Done
+Changing the units of eigen values to SI units-> Done
+Sorting spectrum in ascending order of frequencies-> Done
+Entropy values:
+FF Entropy (UA for DT6)                  : 191.2726 J/mol/K
+TT Entropy (UA for DT6)                  : 16.2500 J/mol/K
+
+
+
+Working on resid : DT7
+Total number of UA beads in residue DT7 : 20
+Assigning Translation Axes at the UA level-> Done
+Assigning Rotational Axes at the UA level-> Done
+Updating Local forces-> Done
+Updating Local torques-> Done
+Weighting forces and torques-> Done
+Updating the submatrices ... 
+Done
+Generating Quadrants-> Done
+A shape change has occured (60,60) -> (19, 19)
+Diagonalizing-> Done
+Changing the units of eigen values to SI units-> Done
+Sorting spectrum in ascending order of frequencies-> Done
+Entropy values:
+FF Entropy (UA for DT7)                  : 187.4119 J/mol/K
+TT Entropy (UA for DT7)                  : 15.5886 J/mol/K
+
+
+
+Working on resid : DT8
+Total number of UA beads in residue DT8 : 20
+Assigning Translation Axes at the UA level-> Done
+Assigning Rotational Axes at the UA level-> Done
+Updating Local forces-> Done
+Updating Local torques-> Done
+Weighting forces and torques-> Done
+Updating the submatrices ... 
+Done
+Generating Quadrants-> Done
+A shape change has occured (60,60) -> (21, 21)
+Diagonalizing-> Done
+Changing the units of eigen values to SI units-> Done
+Sorting spectrum in ascending order of frequencies-> Done
+Entropy values:
+FF Entropy (UA for DT8)                  : 197.2443 J/mol/K
+TT Entropy (UA for DT8)                  : 17.4312 J/mol/K
+
+
+
+------------------------------------------------------------
+Total Entropy FF (UA level) :        1439.502 J/mol/K
+Total Entropy TT (UA level) :         107.676 J/mol/K
+------------------------------------------------------------
+UA_entropyFF = 1439.501746003283
+UA_entropyTT = 107.67610435497281
+A shape change has occured (51,51) -> (21, 21)
+
+
+
+A shape change has occured (54,54) -> (21, 21)
+
+
+
+A shape change has occured (63,63) -> (21, 21)
+
+
+
+A shape change has occured (60,60) -> (19, 19)
+A shape change has occured (60,60) -> (21, 21)
+
+
+
+
+
+
+A shape change has occured (60,60) -> (19, 19)
+
+
+
+A shape change has occured (63,63) -> (19, 19)
+
+
+
+A shape change has occured (63,63) -> (19, 19)
+
+
+
+  RESNAME  RESID  FF_ENTROPY(J/mol/K)  TT_ENTROPY(J/mol/K)
+0      DA      1           133.998028            10.941747
+1      DA      2           193.166817            10.200249
+2      DA      3           192.447898             8.853371
+3      DA      4           207.565284            11.098340
+4      DT      5           136.394842            17.312554
+5      DT      6           191.272589            16.250041
+6      DT      7           187.411949            15.588642
+7      DT      8           197.244338            17.431160
+UA_entropyFF = 1439.5017460032827
+UA_entropyTT = 107.67610435497281
+------------------------------------------------------------
+Topographical entropy of residue side chains 
+ computed using all the dihedrals with pLogp formalism
+------------------------------------------------------------
+----------Working on resid : 1 (DA)----------
+Found 40 exclusive dihedrals in residue DA
+Dihedral 10   11   13   14    : -0.0000
+Dihedral 26   24   29   30    : 5.2534
+Dihedral 7    8    26   24    : -0.0000
+Dihedral 15   14   23   22    : -0.0000
+Dihedral 7    5    24   26    : 0.4618
+Dihedral 2    5    24   26    : 0.4618
+Dihedral 13   14   15   16    : -0.0000
+Dihedral 2    5    24   29    : 0.4618
+Dihedral 13   14   23   22    : -0.0000
+Dihedral 13   14   15   19    : -0.0000
+Dihedral 8    7    5    24    : 0.4618
+Dihedral 8    10   23   14    : -0.0000
+Dihedral 5    7    8    10    : 4.6528
+Dihedral 10   23   14   15    : -0.0000
+Dihedral 11   13   14   23    : -0.0000
+Dihedral 11   13   14   15    : -0.0000
+Dihedral 2    5    7    8     : 0.4618
+Dihedral 10   23   14   13    : -0.0000
+Dihedral 15   19   20   22    : -0.0000
+Dihedral 5    7    8    26    : 5.1269
+Dihedral 14   23   22   20    : -0.0000
+Dihedral 5    24   26   8     : 5.6711
+Dihedral 8    10   11   13    : -0.0000
+Dihedral 0    2    5    7     : 5.2166
+Dihedral 7    5    24   29    : 0.4618
+Dihedral 5    24   29   30    : 5.5058
+Dihedral 16   15   14   23    : -0.0000
+Dihedral 16   15   19   20    : -0.0000
+Dihedral 11   10   23   14    : -0.0000
+Dihedral 19   15   14   23    : -0.0000
+Dihedral 0    2    5    24    : 5.2166
+Dihedral 8    10   23   22    : -0.0000
+Dihedral 10   8    26   24    : -0.0000
+Dihedral 19   20   22   23    : -0.0000
+Dihedral 10   23   22   20    : -0.0000
+Dihedral 13   11   10   23    : -0.0000
+Dihedral 14   15   19   20    : -0.0000
+Dihedral 11   10   23   22    : -0.0000
+Dihedral 8    26   24   29    : 5.3651
+Dihedral 7    8    10   11    : 5.4624
+Side Chain Topographical Entropy (DA 1)  : 50.2417
+----------Working on resid : 2 (DA)----------
+Found 44 exclusive dihedrals in residue DA
+Dihedral 40   42   43   45    : -0.0000
+Dihedral 40   39   37   56    : 0.4618
+Dihedral 39   37   56   58    : 0.4618
+Dihedral 39   40   42   43    : 4.0199
+Dihedral 40   58   56   61    : 4.5590
+Dihedral 45   46   47   51    : -0.0000
+Dihedral 42   55   46   47    : -0.0000
+Dihedral 37   56   61   62    : 5.2534
+Dihedral 37   39   40   58    : 5.7530
+Dihedral 40   42   55   46    : -0.0000
+Dihedral 46   55   54   52    : -0.0000
+Dihedral 51   52   54   55    : -0.0000
+Dihedral 32   30   33   34    : -0.0000
+Dihedral 48   47   46   55    : -0.0000
+Dihedral 43   42   55   46    : -0.0000
+Dihedral 45   46   47   48    : -0.0000
+Dihedral 37   56   58   40    : 5.3111
+Dihedral 45   46   55   54    : -0.0000
+Dihedral 37   39   40   42    : 5.4624
+Dihedral 39   37   56   61    : 0.4618
+Dihedral 46   47   51   52    : -0.0000
+Dihedral 42   55   54   52    : -0.0000
+Dihedral 34   37   39   40    : -0.0000
+Dihedral 30   33   34   37    : 1.3859
+Dihedral 33   34   37   56    : -0.0000
+Dihedral 29   30   33   34    : -0.0000
+Dihedral 33   34   37   39    : -0.0000
+Dihedral 43   45   46   47    : -0.0000
+Dihedral 39   40   58   56    : -0.0000
+Dihedral 40   42   55   54    : -0.0000
+Dihedral 47   46   55   54    : -0.0000
+Dihedral 58   56   61   62    : 5.5058
+Dihedral 31   30   33   34    : -0.0000
+Dihedral 43   42   55   54    : -0.0000
+Dihedral 43   45   46   55    : -0.0000
+Dihedral 45   43   42   55    : -0.0000
+Dihedral 42   43   45   46    : -0.0000
+Dihedral 42   40   58   56    : -0.0000
+Dihedral 48   47   51   52    : -0.0000
+Dihedral 34   37   56   58    : 0.4618
+Dihedral 34   37   56   61    : -0.0000
+Dihedral 51   47   46   55    : -0.0000
+Dihedral 42   55   46   45    : -0.0000
+Dihedral 47   51   52   54    : -0.0000
+Side Chain Topographical Entropy (DA 2)  : 39.0978
+----------Working on resid : 3 (DA)----------
+Found 44 exclusive dihedrals in residue DA
+Dihedral 71   69   88   90    : 0.8087
+Dihedral 77   75   74   87    : -0.0000
+Dihedral 83   79   78   87    : -0.0000
+Dihedral 75   74   87   86    : -0.0000
+Dihedral 66   69   71   72    : -0.0000
+Dihedral 72   74   87   86    : -0.0000
+Dihedral 74   87   78   77    : -0.0000
+Dihedral 74   75   77   78    : -0.0000
+Dihedral 72   74   75   77    : -0.0000
+Dihedral 64   62   65   66    : -0.0000
+Dihedral 71   69   88   93    : 0.8087
+Dihedral 90   88   93   94    : 3.3461
+Dihedral 66   69   88   93    : 0.8087
+Dihedral 61   62   65   66    : -0.0000
+Dihedral 71   72   74   75    : 3.7682
+Dihedral 65   66   69   71    : -0.0000
+Dihedral 79   83   84   86    : -0.0000
+Dihedral 78   87   86   84    : -0.0000
+Dihedral 69   88   93   94    : 3.0310
+Dihedral 75   77   78   79    : -0.0000
+Dihedral 77   78   79   83    : -0.0000
+Dihedral 77   78   87   86    : -0.0000
+Dihedral 75   77   78   87    : -0.0000
+Dihedral 74   87   86   84    : -0.0000
+Dihedral 83   84   86   87    : -0.0000
+Dihedral 78   79   83   84    : -0.0000
+Dihedral 75   74   87   78    : -0.0000
+Dihedral 79   78   87   86    : -0.0000
+Dihedral 69   88   90   72    : 5.4624
+Dihedral 72   90   88   93    : 4.5590
+Dihedral 69   71   72   74    : 5.4624
+Dihedral 80   79   83   84    : -0.0000
+Dihedral 77   78   79   80    : -0.0000
+Dihedral 74   72   90   88    : 0.4618
+Dihedral 66   69   88   90    : 0.8087
+Dihedral 69   71   72   90    : 5.1920
+Dihedral 71   72   90   88    : -0.0000
+Dihedral 80   79   78   87    : -0.0000
+Dihedral 62   65   66   69    : 1.8735
+Dihedral 72   74   87   78    : -0.0000
+Dihedral 65   66   69   88    : -0.0000
+Dihedral 63   62   65   66    : -0.0000
+Dihedral 72   71   69   88    : 0.8087
+Dihedral 74   87   78   79    : -0.0000
+Side Chain Topographical Entropy (DA 3)  : 37.2001
+----------Working on resid : 4 (DA)----------
+Found 42 exclusive dihedrals in residue DA
+Dihedral 109  110  111  112   : -0.0000
+Dihedral 110  111  115  116   : -0.0000
+Dihedral 96   94   97   98    : -0.0000
+Dihedral 115  116  118  119   : -0.0000
+Dihedral 97   98   101  103   : -0.0000
+Dihedral 110  119  118  116   : -0.0000
+Dihedral 109  110  119  118   : -0.0000
+Dihedral 112  111  110  119   : -0.0000
+Dihedral 103  101  120  122   : 0.8087
+Dihedral 101  103  104  106   : 5.5457
+Dihedral 106  107  109  110   : -0.0000
+Dihedral 94   97   98   101   : 1.1117
+Dihedral 106  104  122  120   : -0.0000
+Dihedral 109  110  111  115   : -0.0000
+Dihedral 101  103  104  122   : 5.6711
+Dihedral 97   98   101  120   : -0.0000
+Dihedral 111  110  119  118   : -0.0000
+Dihedral 104  106  107  109   : -0.0000
+Dihedral 115  111  110  119   : -0.0000
+Dihedral 103  101  120  125   : 0.8087
+Dihedral 106  119  110  111   : -0.0000
+Dihedral 104  103  101  120   : 0.4618
+Dihedral 111  115  116  118   : -0.0000
+Dihedral 107  109  110  111   : -0.0000
+Dihedral 106  119  118  116   : -0.0000
+Dihedral 101  120  122  104   : 5.6151
+Dihedral 103  104  106  107   : 3.3461
+Dihedral 104  106  119  110   : -0.0000
+Dihedral 104  122  120  125   : 5.7595
+Dihedral 98   101  120  125   : 1.1117
+Dihedral 107  109  110  119   : -0.0000
+Dihedral 98   101  103  104   : -0.0000
+Dihedral 106  119  110  109   : -0.0000
+Dihedral 107  106  119  118   : -0.0000
+Dihedral 98   101  120  122   : 1.1117
+Dihedral 103  104  122  120   : -0.0000
+Dihedral 95   94   97   98    : -0.0000
+Dihedral 104  106  119  118   : -0.0000
+Dihedral 112  111  115  116   : -0.0000
+Dihedral 107  106  119  110   : -0.0000
+Dihedral 93   94   97   98    : -0.0000
+Dihedral 109  107  106  119   : -0.0000
+Side Chain Topographical Entropy (DA 4)  : 31.3519
+----------Working on resid : 5 (DT)----------
+Found 33 exclusive dihedrals in residue DT
+Dihedral 135  137  138  140   : -0.0000
+Dihedral 138  140  145  146   : -0.0000
+Dihedral 135  137  149  147   : -0.0000
+Dihedral 134  132  151  156   : 0.4618
+Dihedral 140  145  147  149   : -0.0000
+Dihedral 134  135  153  151   : -0.0000
+Dihedral 135  137  149  150   : -0.0000
+Dihedral 135  134  132  151   : -0.0000
+Dihedral 141  140  145  146   : -0.0000
+Dihedral 127  129  132  134   : 6.4105
+Dihedral 132  134  135  153   : 5.7301
+Dihedral 146  145  147  149   : -0.0000
+Dihedral 137  149  147  145   : -0.0000
+Dihedral 138  137  149  147   : -0.0000
+Dihedral 145  147  149  150   : -0.0000
+Dihedral 132  151  156  157   : 3.1922
+Dihedral 141  140  145  147   : -0.0000
+Dihedral 134  135  137  138   : 1.3859
+Dihedral 153  151  156  157   : 3.6337
+Dihedral 129  132  151  153   : 0.4618
+Dihedral 140  138  137  149   : -0.0000
+Dihedral 129  132  151  156   : 0.4618
+Dihedral 134  132  151  153   : 0.4618
+Dihedral 129  132  134  135   : -0.0000
+Dihedral 137  138  140  141   : -0.0000
+Dihedral 137  138  140  145   : -0.0000
+Dihedral 132  151  153  135   : 5.5058
+Dihedral 137  135  153  151   : -0.0000
+Dihedral 135  153  151  156   : 5.5821
+Dihedral 138  140  145  147   : -0.0000
+Dihedral 132  134  135  137   : 5.7137
+Dihedral 127  129  132  151   : 6.5695
+Dihedral 138  137  149  150   : -0.0000
+Side Chain Topographical Entropy (DT 5)  : 45.5708
+----------Working on resid : 6 (DT)----------
+Found 37 exclusive dihedrals in residue DT
+Dihedral 161  164  183  185   : 1.1117
+Dihedral 172  170  169  181   : -0.0000
+Dihedral 169  167  185  183   : -0.0000
+Dihedral 173  172  177  179   : -0.0000
+Dihedral 167  169  170  172   : -0.0000
+Dihedral 156  157  160  161   : -0.0000
+Dihedral 169  170  172  177   : -0.0000
+Dihedral 167  169  181  179   : -0.0000
+Dihedral 173  172  177  178   : -0.0000
+Dihedral 167  166  164  183   : -0.0000
+Dihedral 166  167  169  170   : 0.4618
+Dihedral 177  179  181  182   : -0.0000
+Dihedral 157  160  161  164   : 0.4618
+Dihedral 161  164  183  188   : 1.6384
+Dihedral 160  161  164  183   : -0.0000
+Dihedral 178  177  179  181   : -0.0000
+Dihedral 159  157  160  161   : -0.0000
+Dihedral 164  183  188  189   : 1.1117
+Dihedral 170  172  177  179   : -0.0000
+Dihedral 172  177  179  181   : -0.0000
+Dihedral 164  183  185  167   : 5.5457
+Dihedral 169  170  172  173   : -0.0000
+Dihedral 169  181  179  177   : -0.0000
+Dihedral 160  161  164  166   : -0.0000
+Dihedral 170  169  181  179   : -0.0000
+Dihedral 166  167  185  183   : -0.0000
+Dihedral 158  157  160  161   : -0.0000
+Dihedral 161  164  166  167   : -0.0000
+Dihedral 164  166  167  185   : 5.5058
+Dihedral 167  169  181  182   : -0.0000
+Dihedral 164  166  167  169   : 3.7682
+Dihedral 167  185  183  188   : 5.6448
+Dihedral 166  164  183  185   : 0.8087
+Dihedral 185  183  188  189   : 1.3859
+Dihedral 166  164  183  188   : 1.6384
+Dihedral 170  172  177  178   : -0.0000
+Dihedral 170  169  181  182   : -0.0000
+Side Chain Topographical Entropy (DT 6)  : 29.0829
+----------Working on resid : 7 (DT)----------
+Found 37 exclusive dihedrals in residue DT
+Dihedral 193  196  198  199   : -0.0000
+Dihedral 196  215  220  221   : 0.8087
+Dihedral 202  204  209  211   : -0.0000
+Dihedral 192  193  196  215   : -0.0000
+Dihedral 198  196  215  217   : 0.8087
+Dihedral 190  189  192  193   : -0.0000
+Dihedral 205  204  209  211   : -0.0000
+Dihedral 198  199  201  202   : 0.8087
+Dihedral 199  201  213  214   : -0.0000
+Dihedral 191  189  192  193   : -0.0000
+Dihedral 196  198  199  217   : 5.6448
+Dihedral 201  202  204  209   : -0.0000
+Dihedral 199  217  215  220   : 5.3111
+Dihedral 198  199  217  215   : -0.0000
+Dihedral 189  192  193  196   : -0.0000
+Dihedral 209  211  213  214   : -0.0000
+Dihedral 192  193  196  198   : -0.0000
+Dihedral 201  213  211  209   : -0.0000
+Dihedral 196  198  199  201   : 4.8272
+Dihedral 193  196  215  220   : 1.3859
+Dihedral 205  204  209  210   : -0.0000
+Dihedral 202  201  213  214   : 0.4618
+Dihedral 217  215  220  221   : 2.3017
+Dihedral 188  189  192  193   : -0.0000
+Dihedral 193  196  215  217   : 1.1117
+Dihedral 204  209  211  213   : -0.0000
+Dihedral 201  202  204  205   : -0.0000
+Dihedral 202  204  209  210   : -0.0000
+Dihedral 199  198  196  215   : -0.0000
+Dihedral 198  196  215  220   : 1.1117
+Dihedral 196  215  217  199   : 4.7421
+Dihedral 204  202  201  213   : -0.0000
+Dihedral 202  201  213  211   : -0.0000
+Dihedral 210  209  211  213   : -0.0000
+Dihedral 199  201  202  204   : -0.0000
+Dihedral 199  201  213  211   : -0.0000
+Dihedral 201  199  217  215   : -0.0000
+Side Chain Topographical Entropy (DT 7)  : 29.3243
+----------Working on resid : 8 (DT)----------
+Found 35 exclusive dihedrals in residue DT
+Dihedral 221  224  225  228   : -0.0000
+Dihedral 241  243  245  246   : -0.0000
+Dihedral 220  221  224  225   : -0.0000
+Dihedral 224  225  228  247   : 0.4618
+Dihedral 233  245  243  241   : -0.0000
+Dihedral 237  236  241  243   : -0.0000
+Dihedral 230  231  233  234   : 1.3859
+Dihedral 225  228  247  249   : 3.1922
+Dihedral 234  233  245  243   : -0.0000
+Dihedral 234  236  241  242   : -0.0000
+Dihedral 233  234  236  237   : -0.0000
+Dihedral 234  233  245  246   : -0.0000
+Dihedral 237  236  241  242   : -0.0000
+Dihedral 231  233  234  236   : -0.0000
+Dihedral 231  230  228  247   : -0.0000
+Dihedral 223  221  224  225   : -0.0000
+Dihedral 228  230  231  249   : 4.4608
+Dihedral 228  230  231  233   : 3.7682
+Dihedral 233  234  236  241   : -0.0000
+Dihedral 225  228  247  252   : 3.1922
+Dihedral 233  231  249  247   : -0.0000
+Dihedral 224  225  228  230   : 0.4618
+Dihedral 236  234  233  245   : -0.0000
+Dihedral 225  228  230  231   : -0.0000
+Dihedral 222  221  224  225   : -0.0000
+Dihedral 231  249  247  252   : 5.2534
+Dihedral 228  247  249  231   : 4.7421
+Dihedral 242  241  243  245   : -0.0000
+Dihedral 230  228  247  249   : 2.6848
+Dihedral 234  236  241  243   : -0.0000
+Dihedral 231  233  245  246   : -0.0000
+Dihedral 230  231  249  247   : -0.0000
+Dihedral 230  228  247  252   : 2.4983
+Dihedral 236  241  243  245   : -0.0000
+Dihedral 231  233  245  243   : -0.0000
+Side Chain Topographical Entropy (DT 8)  : 32.1015
+------------------------------------------------------------
+Total SC Topog. Entropy                  :         293.971
+------------------------------------------------------------
+result_entropy0_SC = 293.9709756008913
+------------------------------------------------------------
+Topographical entropy of BB dihedrals 
+ computed using the pLogp formalism
+------------------------------------------------------------
+Found a total of 0 BB dihedrals.
+------------------------------------------------------------
+Total BB Topog. Entropy                  :           0.000
+------------------------------------------------------------
+result_entropy0_BB = 0.0
+------------------------------------------------------------
+Topographical entropy of residue side chains 
+computed using all the dihedrals with correlation/pLogp formalism
+------------------------------------------------------------
+----------Working on resid : 1 (DA)----------
+Found 18 exclusive dihedrals in residue 1DA
+Found 18 dihedrals which collectively acquire 24 unique conformers
+Side Chain Topographical Entropy from corr. pLogP method (DA 1) : 22.0666
+----------Working on resid : 2 (DA)----------
+Found 20 exclusive dihedrals in residue 2DA
+Found 20 dihedrals which collectively acquire 16 unique conformers
+Side Chain Topographical Entropy from corr. pLogP method (DA 2) : 19.1358
+----------Working on resid : 3 (DA)----------
+Found 20 exclusive dihedrals in residue 3DA
+Found 20 dihedrals which collectively acquire 17 unique conformers
+Side Chain Topographical Entropy from corr. pLogP method (DA 3) : 17.8214
+----------Working on resid : 4 (DA)----------
+Found 19 exclusive dihedrals in residue 4DA
+Found 19 dihedrals which collectively acquire 13 unique conformers
+Side Chain Topographical Entropy from corr. pLogP method (DA 4) : 16.3085
+----------Working on resid : 5 (DT)----------
+Found 14 exclusive dihedrals in residue 5DT
+Found 14 dihedrals which collectively acquire 23 unique conformers
+Side Chain Topographical Entropy from corr. pLogP method (DT 5) : 20.8227
+----------Working on resid : 6 (DT)----------
+Found 16 exclusive dihedrals in residue 6DT
+Found 16 dihedrals which collectively acquire 10 unique conformers
+Side Chain Topographical Entropy from corr. pLogP method (DT 6) : 13.8503
+----------Working on resid : 7 (DT)----------
+Found 16 exclusive dihedrals in residue 7DT
+Found 16 dihedrals which collectively acquire 9 unique conformers
+Side Chain Topographical Entropy from corr. pLogP method (DT 7) : 13.0308
+----------Working on resid : 8 (DT)----------
+Found 15 exclusive dihedrals in residue 8DT
+Found 15 dihedrals which collectively acquire 8 unique conformers
+Side Chain Topographical Entropy from corr. pLogP method (DT 8) : 12.5105
+------------------------------------------------------------
+Total SC Topog. Entropy (corr. pLogP)    :         135.547
+------------------------------------------------------------
+result_entropy1_SC= 135.54666151535397
+------------------------------------------------------------
+Topographical entropy of BB dihedrals 
+computed using the correlated-pLogp formalism
+------------------------------------------------------------
+Found 0 dihedrals which collectively acquire 1 unique conformers
+------------------------------------------------------------
+Total BB Topog. Entropy (corr. pLogP)    :          -0.000
+------------------------------------------------------------
+result_entropy1_BB= -0.0
+------------------------------------------------------------
+Topographical entropy of residue side chains 
+computed using all the dihedrals with AEM method
+------------------------------------------------------------
+----------Working on resid : 1 (DA)----------
+Found 18 exclusive dihedrals in residue DA1
+3 turning point(s) found for dihedral [ 0  2  5 24]. : 45.0 165.0 315.0 
+1 turning point(s) found for dihedral [ 8  7  5 24]. : 15.0 
+1 turning point(s) found for dihedral [ 7  5 24 29]. : 255.0 
+1 turning point(s) found for dihedral [ 5  7  8 26]. : 315.0 
+1 turning point(s) found for dihedral [ 7  8 10 11]. : 105.0 
+1 turning point(s) found for dihedral [ 7  8 26 24]. : 45.0 
+1 turning point(s) found for dihedral [13 11 10 23]. : 15.0 
+1 turning point(s) found for dihedral [11 10 23 22]. : 165.0 
+1 turning point(s) found for dihedral [10 11 13 14]. : 345.0 
+1 turning point(s) found for dihedral [11 13 14 23]. : 15.0 
+1 turning point(s) found for dihedral [16 15 14 23]. : 195.0 
+1 turning point(s) found for dihedral [10 23 14 15]. : 165.0 
+1 turning point(s) found for dihedral [14 15 19 20]. : 345.0 
+1 turning point(s) found for dihedral [15 19 20 22]. : 15.0 
+1 turning point(s) found for dihedral [19 20 22 23]. : 345.0 
+1 turning point(s) found for dihedral [10 23 22 20]. : 165.0 
+2 turning point(s) found for dihedral [ 8 26 24 29]. : 75.0 165.0 
+3 turning point(s) found for dihedral [26 24 29 30]. : 75.0 135.0 345.0 
+Found 18 dihedrals which collectively acquire 8 unique conformers
+Residue Topographical Entropy from AEM (DA 1) : 11.7116
+----------Working on resid : 2 (DA)----------
+Found 20 exclusive dihedrals in residue DA2
+1 turning point(s) found for dihedral [32 30 33 34]. : 165.0 
+1 turning point(s) found for dihedral [30 33 34 37]. : 135.0 
+1 turning point(s) found for dihedral [33 34 37 56]. : 45.0 
+1 turning point(s) found for dihedral [40 39 37 56]. : 15.0 
+1 turning point(s) found for dihedral [39 37 56 61]. : 255.0 
+1 turning point(s) found for dihedral [37 39 40 58]. : 315.0 
+1 turning point(s) found for dihedral [39 40 42 43]. : 75.0 
+1 turning point(s) found for dihedral [39 40 58 56]. : 45.0 
+1 turning point(s) found for dihedral [45 43 42 55]. : 15.0 
+1 turning point(s) found for dihedral [43 42 55 54]. : 165.0 
+1 turning point(s) found for dihedral [42 43 45 46]. : 345.0 
+1 turning point(s) found for dihedral [43 45 46 55]. : 345.0 
+1 turning point(s) found for dihedral [48 47 46 55]. : 195.0 
+1 turning point(s) found for dihedral [47 46 55 54]. : 15.0 
+1 turning point(s) found for dihedral [46 47 51 52]. : 345.0 
+1 turning point(s) found for dihedral [47 51 52 54]. : 15.0 
+1 turning point(s) found for dihedral [51 52 54 55]. : 345.0 
+1 turning point(s) found for dihedral [42 55 54 52]. : 165.0 
+1 turning point(s) found for dihedral [40 58 56 61]. : 75.0 
+2 turning point(s) found for dihedral [58 56 61 62]. : 75.0 165.0 
+Found 20 dihedrals which collectively acquire 2 unique conformers
+Residue Topographical Entropy from AEM (DA 2) : 4.4608
+----------Working on resid : 3 (DA)----------
+Found 20 exclusive dihedrals in residue DA3
+1 turning point(s) found for dihedral [64 62 65 66]. : 165.0 
+1 turning point(s) found for dihedral [62 65 66 69]. : 165.0 
+1 turning point(s) found for dihedral [65 66 69 88]. : 45.0 
+1 turning point(s) found for dihedral [72 71 69 88]. : 345.0 
+1 turning point(s) found for dihedral [66 69 88 93]. : 135.0 
+1 turning point(s) found for dihedral [69 71 72 90]. : 345.0 
+1 turning point(s) found for dihedral [71 72 74 75]. : 75.0 
+2 turning point(s) found for dihedral [74 72 90 88]. : 75.0 165.0 
+1 turning point(s) found for dihedral [77 75 74 87]. : 15.0 
+1 turning point(s) found for dihedral [75 74 87 86]. : 165.0 
+1 turning point(s) found for dihedral [74 75 77 78]. : 345.0 
+1 turning point(s) found for dihedral [75 77 78 87]. : 15.0 
+1 turning point(s) found for dihedral [83 79 78 87]. : 345.0 
+1 turning point(s) found for dihedral [77 78 87 86]. : 195.0 
+1 turning point(s) found for dihedral [80 79 83 84]. : 195.0 
+1 turning point(s) found for dihedral [79 83 84 86]. : 15.0 
+1 turning point(s) found for dihedral [83 84 86 87]. : 345.0 
+1 turning point(s) found for dihedral [74 87 86 84]. : 195.0 
+2 turning point(s) found for dihedral [72 90 88 93]. : 75.0 165.0 
+2 turning point(s) found for dihedral [90 88 93 94]. : 75.0 165.0 
+Found 20 dihedrals which collectively acquire 4 unique conformers
+Residue Topographical Entropy from AEM (DA 3) : 3.0048
+----------Working on resid : 4 (DA)----------
+Found 19 exclusive dihedrals in residue DA4
+1 turning point(s) found for dihedral [96 94 97 98]. : 165.0 
+1 turning point(s) found for dihedral [ 94  97  98 101]. : 165.0 
+1 turning point(s) found for dihedral [ 97  98 101 120]. : 45.0 
+1 turning point(s) found for dihedral [104 103 101 120]. : 15.0 
+1 turning point(s) found for dihedral [ 98 101 120 125]. : 135.0 
+1 turning point(s) found for dihedral [101 103 104 122]. : 315.0 
+1 turning point(s) found for dihedral [103 104 106 107]. : 75.0 
+1 turning point(s) found for dihedral [106 104 122 120]. : 165.0 
+1 turning point(s) found for dihedral [109 107 106 119]. : 15.0 
+1 turning point(s) found for dihedral [107 106 119 118]. : 165.0 
+1 turning point(s) found for dihedral [106 107 109 110]. : 15.0 
+1 turning point(s) found for dihedral [107 109 110 119]. : 345.0 
+1 turning point(s) found for dihedral [115 111 110 119]. : 15.0 
+1 turning point(s) found for dihedral [106 119 110 109]. : 15.0 
+1 turning point(s) found for dihedral [110 111 115 116]. : 345.0 
+1 turning point(s) found for dihedral [111 115 116 118]. : 15.0 
+1 turning point(s) found for dihedral [115 116 118 119]. : 345.0 
+1 turning point(s) found for dihedral [110 119 118 116]. : 15.0 
+1 turning point(s) found for dihedral [104 122 120 125]. : 75.0 
+Found 19 dihedrals which collectively acquire 1 unique conformers
+Residue Topographical Entropy from AEM (DA 4) : -0.0000
+----------Working on resid : 5 (DT)----------
+Found 14 exclusive dihedrals in residue DT5
+3 turning point(s) found for dihedral [127 129 132 151]. : 45.0 165.0 285.0 
+1 turning point(s) found for dihedral [135 134 132 151]. : 15.0 
+1 turning point(s) found for dihedral [134 132 151 156]. : 255.0 
+1 turning point(s) found for dihedral [132 134 135 153]. : 345.0 
+1 turning point(s) found for dihedral [134 135 137 138]. : 75.0 
+1 turning point(s) found for dihedral [134 135 153 151]. : 45.0 
+1 turning point(s) found for dihedral [140 138 137 149]. : 15.0 
+1 turning point(s) found for dihedral [138 137 149 150]. : 165.0 
+1 turning point(s) found for dihedral [137 138 140 145]. : 15.0 
+1 turning point(s) found for dihedral [141 140 145 147]. : 165.0 
+1 turning point(s) found for dihedral [146 145 147 149]. : 195.0 
+1 turning point(s) found for dihedral [145 147 149 150]. : 195.0 
+1 turning point(s) found for dihedral [135 153 151 156]. : 75.0 
+2 turning point(s) found for dihedral [153 151 156 157]. : 75.0 165.0 
+Found 14 dihedrals which collectively acquire 6 unique conformers
+Residue Topographical Entropy from AEM (DT 5) : 8.9637
+----------Working on resid : 6 (DT)----------
+Found 16 exclusive dihedrals in residue DT6
+1 turning point(s) found for dihedral [156 157 160 161]. : 285.0 
+1 turning point(s) found for dihedral [157 160 161 164]. : 165.0 
+1 turning point(s) found for dihedral [160 161 164 183]. : 45.0 
+1 turning point(s) found for dihedral [167 166 164 183]. : 15.0 
+1 turning point(s) found for dihedral [166 164 183 188]. : 255.0 
+1 turning point(s) found for dihedral [164 166 167 185]. : 315.0 
+1 turning point(s) found for dihedral [166 167 169 170]. : 75.0 
+1 turning point(s) found for dihedral [169 167 185 183]. : 165.0 
+1 turning point(s) found for dihedral [172 170 169 181]. : 15.0 
+1 turning point(s) found for dihedral [170 169 181 182]. : 165.0 
+1 turning point(s) found for dihedral [169 170 172 177]. : 345.0 
+1 turning point(s) found for dihedral [173 172 177 179]. : 165.0 
+1 turning point(s) found for dihedral [172 177 179 181]. : 15.0 
+1 turning point(s) found for dihedral [177 179 181 182]. : 195.0 
+1 turning point(s) found for dihedral [167 185 183 188]. : 105.0 
+2 turning point(s) found for dihedral [185 183 188 189]. : 75.0 135.0 
+Found 16 dihedrals which collectively acquire 2 unique conformers
+Residue Topographical Entropy from AEM (DT 6) : 0.8087
+----------Working on resid : 7 (DT)----------
+Found 16 exclusive dihedrals in residue DT7
+1 turning point(s) found for dihedral [190 189 192 193]. : 45.0 
+1 turning point(s) found for dihedral [189 192 193 196]. : 165.0 
+1 turning point(s) found for dihedral [192 193 196 215]. : 45.0 
+1 turning point(s) found for dihedral [199 198 196 215]. : 15.0 
+1 turning point(s) found for dihedral [193 196 215 220]. : 135.0 
+1 turning point(s) found for dihedral [196 198 199 217]. : 315.0 
+1 turning point(s) found for dihedral [198 199 201 202]. : 75.0 
+1 turning point(s) found for dihedral [198 199 217 215]. : 45.0 
+1 turning point(s) found for dihedral [204 202 201 213]. : 15.0 
+1 turning point(s) found for dihedral [199 201 213 214]. : 345.0 
+1 turning point(s) found for dihedral [201 202 204 209]. : 345.0 
+1 turning point(s) found for dihedral [202 204 209 211]. : 345.0 
+1 turning point(s) found for dihedral [210 209 211 213]. : 195.0 
+1 turning point(s) found for dihedral [209 211 213 214]. : 195.0 
+1 turning point(s) found for dihedral [199 217 215 220]. : 105.0 
+2 turning point(s) found for dihedral [196 215 220 221]. : 195.0 285.0 
+Found 16 dihedrals which collectively acquire 2 unique conformers
+Residue Topographical Entropy from AEM (DT 7) : 0.4618
+----------Working on resid : 8 (DT)----------
+Found 15 exclusive dihedrals in residue DT8
+1 turning point(s) found for dihedral [220 221 224 225]. : 285.0 
+1 turning point(s) found for dihedral [221 224 225 228]. : 165.0 
+1 turning point(s) found for dihedral [224 225 228 247]. : 45.0 
+1 turning point(s) found for dihedral [231 230 228 247]. : 15.0 
+1 turning point(s) found for dihedral [230 228 247 252]. : 255.0 
+1 turning point(s) found for dihedral [228 230 231 249]. : 315.0 
+1 turning point(s) found for dihedral [230 231 233 234]. : 75.0 
+1 turning point(s) found for dihedral [233 231 249 247]. : 165.0 
+1 turning point(s) found for dihedral [236 234 233 245]. : 15.0 
+1 turning point(s) found for dihedral [231 233 245 246]. : 345.0 
+1 turning point(s) found for dihedral [233 234 236 241]. : 345.0 
+1 turning point(s) found for dihedral [237 236 241 243]. : 195.0 
+1 turning point(s) found for dihedral [236 241 243 245]. : 345.0 
+1 turning point(s) found for dihedral [241 243 245 246]. : 195.0 
+1 turning point(s) found for dihedral [231 249 247 252]. : 105.0 
+Found 15 dihedrals which collectively acquire 1 unique conformers
+Residue Topographical Entropy from AEM (DT 8) : -0.0000
+------------------------------------------------------------
+Total Topog. Entropy (AEM)               :          29.411
+------------------------------------------------------------
+result_entropyAEM = 29.411494577081342
+total time 0:00:35.806381
