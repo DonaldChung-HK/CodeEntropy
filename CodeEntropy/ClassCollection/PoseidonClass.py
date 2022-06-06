@@ -5,7 +5,7 @@ import gc
 from collections import Counter
 from datetime import datetime
 
-from CodeEntropy.poseidon.extractData.readFiles import populateTopology, getCoordsForces, getDistArray
+from CodeEntropy.poseidon.extractData.readFiles import getCoordsForces_mp, populateTopology, getCoordsForces, getDistArray, getDistArray_mp
 # # Energy is not needed
 # from CodeEntropy.poseidon.extractData.readFiles import populateEnergy, UAEnergyGroup
 from CodeEntropy.poseidon.extractData.HBRAD import distCutoffNc, UALevelRAD, HBCalc
@@ -21,6 +21,11 @@ from CodeEntropy.poseidon.analysis.helper import memoryInfo, weightingPopulation
 
 from functools import partial
 from multiprocessing import Pool
+
+import numpy as np
+
+import dill as pickle
+
 
 class Poseidon():
     """
@@ -391,7 +396,7 @@ class Poseidon_mp(Poseidon):
     def __init__(self ,container, start=0, end=-1, 
         step=1, pureAtomNum=1, cutShell=None, 
         excludedResnames=None,
-        water='WAT', verbose=False, thread=4):
+        water='WAT', verbose=False, thread=2):
         """This is a initialization function to collect information from a MDanalysis universe into a data container for analysis using POSEIDON
         Pending Work
             - rewrite this into a class initalization for easier understanding
@@ -443,8 +448,15 @@ class Poseidon_mp(Poseidon):
             end = len(container.trajectory)
         sys.setrecursionlimit(3000000)
         p = Pool(processes=thread)
-        fi_partial = partial(self.frame_iteration, container, all_data, dimensions, startTime, verbosePrint, waterTuple, cutShell, excludedResnames)
-        data = p.map(fi_partial, [frame for frame in range(int(start), int(end), int(step))])
+
+        frame_list = []
+        for frame in range(int(start), int(end), int(step)):
+            ts = container.trajectory[frame]
+            frame_list.append([np.array(ts.positions), np.array(ts.forces), np.array(ts.dimensions)])
+        fi_partial = partial(self.frame_iteration, all_data, dimensions, startTime, verbosePrint, waterTuple, cutShell, excludedResnames)
+        data = p.map(fi_partial, frame_list)
+        p.join()
+        p.close()
         # data = []
         # for frame in range(int(start), int(end), int(step)):
         #     data.append(fi_partial(frame))
@@ -460,11 +472,11 @@ class Poseidon_mp(Poseidon):
             
         self.allMoleculeList = allMoleculeList
     
-    def frame_iteration(self, container, all_data, dimensions, startTime, verbosePrint, waterTuple, cutShell, excludedResnames, frame):
+    def frame_iteration(self, all_data, dimensions, startTime, verbosePrint, waterTuple, cutShell, excludedResnames, frame):
         clearClass(all_data)
         print(f"frame = {frame}")
 
-        all_data, dimensions = getCoordsForces(container, 
+        all_data, dimensions = getCoordsForces_mp(
                 all_data, dimensions, frame, startTime, 
                 verbosePrint)
         # # Energy is not needed
@@ -479,16 +491,16 @@ class Poseidon_mp(Poseidon):
         sys.stdout.flush()
 
         #'''
-        traj = container.trajectory[frame]
+        traj = frame
         neighbour_coords = None
-        neighbour_coords = traj.positions
+        neighbour_coords = frame[0]
 
         max_cutoff = 10
         for x in range(0, len(all_data)):
             atom = all_data[x]
             #start nearest array from solutes
             if atom.resname not in waterTuple:
-                getDistArray(atom, all_data, traj, max_cutoff,
+                getDistArray_mp(atom, all_data, traj, max_cutoff,
                         dimensions, neighbour_coords,
                         startTime, verbosePrint)
                 #find nearest array for solute neighbours that are solvent
@@ -496,7 +508,7 @@ class Poseidon_mp(Poseidon):
                     neighbour = all_data[nearDist[0]]
                     if neighbour.resname in waterTuple and \
                             neighbour.nearest_all_atom_array == None:
-                        getDistArray(neighbour, all_data, traj, max_cutoff,
+                        getDistArray_mp(neighbour, all_data, traj, max_cutoff,
                                 dimensions, neighbour_coords,
                                 startTime, verbosePrint)
                     #find solvent neighbours neighbours nearest array
@@ -505,7 +517,7 @@ class Poseidon_mp(Poseidon):
                             neighbour2 = all_data[nearDist2[0]]
                             if neighbour2.resname in waterTuple and \
                                     neighbour2.nearest_all_atom_array == None:
-                                getDistArray(neighbour2, all_data, 
+                                getDistArray_mp(neighbour2, all_data, 
                                         traj, max_cutoff,
                                         dimensions, 
                                         neighbour_coords,

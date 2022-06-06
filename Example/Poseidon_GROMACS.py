@@ -18,7 +18,7 @@ def main():
     traj_file = os.path.join(wd,"data/1AKI_prod.trr")
     # loading data into individual universe
     main = mda.Universe(topo_file, traj_file)
-    poseidon_object = Poseidon_mp(container=main, start=0, end=20, water=('SOL',), excludedResnames=("CL",), verbose=True, thread=4)
+    poseidon_object = Poseidon_mp(container=main, start=1, end=30, step=2,water=('SOL',), excludedResnames=("CL",), verbose=True)
     poseidon_object.run_analysis(level_list=['moleculeLevel', 'residLevel_resname', 'atomLevel', 'soluteContact'], verbose=True)
 
 if __name__ == '__main__':

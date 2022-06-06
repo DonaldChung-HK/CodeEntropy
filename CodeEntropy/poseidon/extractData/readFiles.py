@@ -132,6 +132,27 @@ def getCoordsForces(container, all_data, dimensions,
 
     return all_data, dimensions
 
+def getCoordsForces_mp(all_data, dimensions, 
+        frame, startTime, verbosePrint):
+    '''
+    Read in coordinate and force trajectories and populate mainClass.
+    '''
+
+
+    t = frame
+    dimensions = np.array(frame[2][0:3])
+
+    for x in range(0, len(t[0])):
+        crds = np.array(t[0][x])
+        all_data[x].coords = crds
+        frcs = np.array(t[1][x])
+        all_data[x].forces = frcs
+ 
+    verbosePrint('COORDS-FORCES')
+    verbosePrint(datetime.now() - startTime)
+    sys.stdout.flush() 
+
+    return all_data, dimensions
 
 
 # #Energy is not needed
@@ -252,3 +273,49 @@ def getDistArray(atom, all_data, traj, max_cutoff,
 
 
 
+def getDistArray_mp(atom, all_data, traj, max_cutoff,
+        dimensions, neighbour_coords, startTime, verbosePrint):
+    '''
+    Find the NN list of an atom
+    Important to use coords directly from MDAnalysis to run NN calc
+    '''
+
+    atom_coords = traj[0][atom.atom_num]
+
+    #added a small min cutoff to stop zero distance
+    array1, array2 = \
+            MDAnalysis.lib.distances.capped_distance(atom_coords, 
+                    neighbour_coords, max_cutoff=max_cutoff, 
+                    min_cutoff=None, box=traj[2], 
+                    method=None, return_distances=True)
+
+
+    try:
+        array1, array2 = zip(*sorted(zip(array2, array1), 
+            key=lambda x: x[0]))
+
+    except ValueError:
+        logging.error('Bad Arrays for Coordinate/ Atom Number '\
+                'Nearest Neighbour Assignments')
+
+    atomNumList = []
+    allAtomList = []
+    for atoms, dist in zip(array2, array1):
+        near = atoms[1]
+        atom_num = all_data[near].atom_num
+        atom_resid = all_data[near].resid
+        atom_mass = all_data[near].mass
+        allAtomList.append((near, dist))
+
+        #atom_resid != all_data[x].resid removed for quartz
+        #surface that is all the same resid.
+        if atom_num != atom.atom_num \
+                and atom_num not in \
+                    atom.bonded_to_atom_num \
+                and float(atom_mass) > 1.1:
+            atomNumList.append((near, dist))
+        else:
+            continue
+
+    atom.nearest_sorted_array = atomNumList
+    atom.nearest_all_atom_array = allAtomList

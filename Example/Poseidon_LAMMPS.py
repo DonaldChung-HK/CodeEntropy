@@ -3,7 +3,7 @@ import MDAnalysis as mda
 from MDAnalysis.analysis.base import AnalysisFromFunction
 from MDAnalysis.coordinates.memory import MemoryReader
 import datetime as dt
-from CodeEntropy.ClassCollection.PoseidonClass import Poseidon
+from CodeEntropy.ClassCollection.PoseidonClass import Poseidon, Poseidon_mp
 
 def load_data():
     #hard coded for now
@@ -34,12 +34,12 @@ def main():
     u2 = load_data() # this should drop all the intermediate values loaded which might benefit memory
     load_data_time = dt.datetime.now()
     print(f"finished loading data: this step = {load_data_time - start}; total ={load_data_time - start}")
-    poseidon_object = Poseidon(container=u2, start=1, end=20)
+    poseidon_object = Poseidon_mp(container=u2, start=1, end=20)
     populate_object_time = dt.datetime.now()
     print(f"finished populate object: this step = {populate_object_time - load_data_time}; total ={populate_object_time - start}")
     analysis_time = dt.datetime.now()
     print(f"finished analysis: this step = {analysis_time - populate_object_time}; total ={analysis_time - start}")
-    result = poseidon_object.run_analysis(level_list = ['moleculeLevel','atomLevel'], verbose=False)
+    result = poseidon_object.run_analysis(level_list = ['moleculeLevel', 'residLevel_resname', 'atomLevel', 'soluteContact'], verbose=False)
     print(result.keys())
     print(result)
 
