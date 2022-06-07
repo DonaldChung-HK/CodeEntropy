@@ -2,7 +2,7 @@ import os, sys
 import MDAnalysis as mda
 from CodeEntropy.FunctionCollection import EntropyFunctions as EF
 from CodeEntropy.ClassCollection import DataContainer as DC
-
+import numpy as np
 import pytest
 
 def test_CodeEntropy_whole_molecule():
@@ -113,3 +113,20 @@ def test_CodeEntropy_united_atom_level_multiprocess():
     )
     assert UA_entropyFF == pytest.approx(1439.5017460032827)
     assert UA_entropyTT == pytest.approx(107.67610435497281)
+
+def test_CodeEntropy_method3():
+    """test for computing topographical entroy using method 3 Correlation density method"""
+    data_dir = os.path.dirname(os.path.abspath(__file__))
+    tprfile = os.path.join(data_dir,"data/md_A4_dna.tpr")
+    trrfile = os.path.join(data_dir,"data/md_A4_dna_xf.trr")
+    u = mda.Universe(tprfile, trrfile)
+    dataContainer = DC.DataContainer(u)
+    result_entropy3 = EF.compute_topographical_entropy_method3(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = None, 
+        arg_verbose = 5
+    ) 
+    result = np.sum(result_entropy3)
+    reference = 211.99999999999983
+    assert reference == pytest.approx(result)

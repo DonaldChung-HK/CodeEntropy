@@ -153,4 +153,10 @@ if __name__ == "__main__":
 
 
     print(f"result_entropyAEM = {result_entropyAEM}")   
-    
+    result_entropy3 = EF.compute_topographical_entropy_method3(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = "entropy3.log", 
+        arg_verbose = 5
+    ) 
+    print(f"result_entropy3 = {result_entropy3}")
