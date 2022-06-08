@@ -195,7 +195,7 @@ def test_CodeEntropy_topo_method1_SC():
     )
 
     reference = 390.587
-    assert 390.0 <= result_entropy1_SC <= 391
+    assert 388.0 <= result_entropy1_SC <= 395.0
 
 def test_CodeEntropy_topo_method1_BB():
     """test for computing topographical entroy using method 1"""
