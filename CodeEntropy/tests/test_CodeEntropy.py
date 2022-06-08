@@ -127,7 +127,6 @@ def test_CodeEntropy_topo_method5():
         arg_outFile = None, 
         arg_verbose = 5
     )
-    reference = 26.35175333184004
     assert 220.0 < result_entropyAEM < 230.0
 
 def test_CodeEntropy_topo_method3():
@@ -180,3 +179,37 @@ def test_CodeEntropy_topo_method0_BB():
 
     reference = 728.8710286898643
     assert reference == pytest.approx(result_entropy0_BB)
+
+def test_CodeEntropy_topo_method1_SC():
+    """test for computing topographical entroy using method 1 some degree of randomness so a range is used"""
+    data_dir = os.path.dirname(os.path.abspath(__file__))
+    tprfile = os.path.join(data_dir,"data/1AKI_ws.tpr")
+    trrfile = os.path.join(data_dir,"data/1AKI_ws.trr")
+    u = mda.Universe(tprfile, trrfile)
+    dataContainer = DC.DataContainer(u)
+    result_entropy1_SC = EF.compute_topographical_entropy1_SC(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = None, 
+        arg_verbose = 5
+    )
+
+    reference = 390.587
+    assert 390.0 <= result_entropy1_SC <= 391
+
+def test_CodeEntropy_topo_method1_BB():
+    """test for computing topographical entroy using method 1"""
+    data_dir = os.path.dirname(os.path.abspath(__file__))
+    tprfile = os.path.join(data_dir,"data/1AKI_ws.tpr")
+    trrfile = os.path.join(data_dir,"data/1AKI_ws.trr")
+    u = mda.Universe(tprfile, trrfile)
+    dataContainer = DC.DataContainer(u)
+    result_entropy1_BB = EF.compute_topographical_entropy1_BB(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = None, 
+        arg_verbose = 5
+    )
+
+    reference = 38.37223423319515
+    assert reference == pytest.approx(result_entropy1_BB)
