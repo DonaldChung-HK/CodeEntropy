@@ -114,21 +114,21 @@ def test_CodeEntropy_united_atom_level_multiprocess():
     assert UA_entropyFF == pytest.approx(1439.5017460032827)
     assert UA_entropyTT == pytest.approx(107.67610435497281)
 
-# def test_CodeEntropy_topo_method5():
-#     """test for computing topographical entroy using method 5 AEM method. AEM is random so it is impossible to make test"""
-#     data_dir = os.path.dirname(os.path.abspath(__file__))
-#     tprfile = os.path.join(data_dir,"data/1AKI_ws.tpr")
-#     trrfile = os.path.join(data_dir,"data/1AKI_ws.trr")
-#     u = mda.Universe(tprfile, trrfile)
-#     dataContainer = DC.DataContainer(u)
-#     result_entropyAEM = EF.compute_topographical_entropy_AEM(
-#         arg_hostDataContainer = dataContainer, 
-#         arg_selector = "all",
-#         arg_outFile = None, 
-#         arg_verbose = 5
-#     )
-#     reference = 26.35175333184004
-#     assert reference == pytest.approx(result_entropyAEM)
+def test_CodeEntropy_topo_method5():
+    """test for computing topographical entroy using method 5 AEM method. AEM is random so it is impossible to make test accurately"""
+    data_dir = os.path.dirname(os.path.abspath(__file__))
+    tprfile = os.path.join(data_dir,"data/1AKI_ws.tpr")
+    trrfile = os.path.join(data_dir,"data/1AKI_ws.trr")
+    u = mda.Universe(tprfile, trrfile)
+    dataContainer = DC.DataContainer(u)
+    result_entropyAEM = EF.compute_topographical_entropy_AEM(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = None, 
+        arg_verbose = 5
+    )
+    reference = 26.35175333184004
+    assert 220.0 < result_entropyAEM < 230.0
 
 def test_CodeEntropy_topo_method3():
     """test for computing topographical entroy using method 3 Correlation density method"""
