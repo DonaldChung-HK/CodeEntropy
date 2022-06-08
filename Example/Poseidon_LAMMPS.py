@@ -5,6 +5,8 @@ from MDAnalysis.coordinates.memory import MemoryReader
 import datetime as dt
 from CodeEntropy.ClassCollection.PoseidonClass import Poseidon
 
+import pandas as pd
+
 def load_data():
     #hard coded for now
     wd = os.path.dirname(os.path.abspath(__file__))
@@ -31,17 +33,28 @@ def load_data():
 
 def main():
     start = dt.datetime.now()
-    u2 = load_data() # this should drop all the intermediate values loaded which might benefit memory
+    # u2 = load_data() # this should drop all the intermediate values loaded which might benefit memory
+    # select = u2.select_atoms("all")
+    # select.write('data.trr', frames=u2.trajectory)
+    wd = os.path.dirname(os.path.abspath(__file__))
+    # loading files
+    topo_file = os.path.join(wd,"data/molecules.prmtop")
+    traj_file = os.path.join(wd,"data/data.trr")
+    topo_file = "data/molecules.prmtop"
+    traj_file = "data/data.trr"
+    u = mda.Universe(topo_file, traj_file)
     load_data_time = dt.datetime.now()
     print(f"finished loading data: this step = {load_data_time - start}; total ={load_data_time - start}")
-    poseidon_object = Poseidon(container=u2, start=1, end=20)
+    poseidon_object = Poseidon(container=u, start=2, end=12)
     populate_object_time = dt.datetime.now()
     print(f"finished populate object: this step = {populate_object_time - load_data_time}; total ={populate_object_time - start}")
     analysis_time = dt.datetime.now()
     print(f"finished analysis: this step = {analysis_time - populate_object_time}; total ={analysis_time - start}")
-    result = poseidon_object.run_analysis(level_list = ['moleculeLevel','atomLevel'], verbose=False)
+    result = poseidon_object.run_analysis(level_list = ['moleculeLevel','atomLevel', 'residLevel_resname'], verbose=False)
     print(result.keys())
     print(result)
+    solute_atom_level_ref = pd.read_csv("data/soluteVariables10.0EE_atomLevel.csv", na_values="nan")
+    a = pd.testing.assert_frame_equal(solute_atom_level_ref, result["atomLevel"]["soluteData"])
 
 
 main()
