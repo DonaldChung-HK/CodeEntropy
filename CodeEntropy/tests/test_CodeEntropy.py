@@ -114,7 +114,23 @@ def test_CodeEntropy_united_atom_level_multiprocess():
     assert UA_entropyFF == pytest.approx(1439.5017460032827)
     assert UA_entropyTT == pytest.approx(107.67610435497281)
 
-def test_CodeEntropy_method3():
+# def test_CodeEntropy_topo_method5():
+#     """test for computing topographical entroy using method 5 AEM method. AEM is random so it is impossible to make test"""
+#     data_dir = os.path.dirname(os.path.abspath(__file__))
+#     tprfile = os.path.join(data_dir,"data/1AKI_ws.tpr")
+#     trrfile = os.path.join(data_dir,"data/1AKI_ws.trr")
+#     u = mda.Universe(tprfile, trrfile)
+#     dataContainer = DC.DataContainer(u)
+#     result_entropyAEM = EF.compute_topographical_entropy_AEM(
+#         arg_hostDataContainer = dataContainer, 
+#         arg_selector = "all",
+#         arg_outFile = None, 
+#         arg_verbose = 5
+#     )
+#     reference = 26.35175333184004
+#     assert reference == pytest.approx(result_entropyAEM)
+
+def test_CodeEntropy_topo_method3():
     """test for computing topographical entroy using method 3 Correlation density method"""
     data_dir = os.path.dirname(os.path.abspath(__file__))
     tprfile = os.path.join(data_dir,"data/md_A4_dna.tpr")
@@ -130,3 +146,37 @@ def test_CodeEntropy_method3():
     result = np.sum(result_entropy3)
     reference = 211.99999999999983
     assert reference == pytest.approx(result)
+
+def test_CodeEntropy_topo_method0_SC():
+    """test for computing topographical entroy using method 3 Correlation density method"""
+    data_dir = os.path.dirname(os.path.abspath(__file__))
+    tprfile = os.path.join(data_dir,"data/1AKI_ws.tpr")
+    trrfile = os.path.join(data_dir,"data/1AKI_ws.trr")
+    u = mda.Universe(tprfile, trrfile)
+    dataContainer = DC.DataContainer(u)
+    result_entropy0_SC = EF.compute_topographical_entropy0_SC(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = None, 
+        arg_verbose = 5
+    )
+
+    reference = 621.2072742842519
+    assert reference == pytest.approx(result_entropy0_SC)
+
+def test_CodeEntropy_topo_method0_BB():
+    """test for computing topographical entroy using method 3 Correlation density method"""
+    data_dir = os.path.dirname(os.path.abspath(__file__))
+    tprfile = os.path.join(data_dir,"data/1AKI_ws.tpr")
+    trrfile = os.path.join(data_dir,"data/1AKI_ws.trr")
+    u = mda.Universe(tprfile, trrfile)
+    dataContainer = DC.DataContainer(u)
+    result_entropy0_BB = EF.compute_topographical_entropy0_BB(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = None, 
+        arg_verbose = 5
+    )
+
+    reference = 728.8710286898643
+    assert reference == pytest.approx(result_entropy0_BB)
