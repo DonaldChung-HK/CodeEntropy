@@ -67,7 +67,7 @@ if __name__ == "__main__":
     )
 
 
-    UA_entropyFF, UA_entropyTT = EF.compute_entropy_UA_level(
+    UA_entropyFF, UA_entropyTT, per_res_df = EF.compute_entropy_UA_level(
         arg_hostDataContainer = dataContainer,
         arg_outFile = outfile,
         arg_selector = 'all', 
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     )
 
 
-    UA_entropyFF, UA_entropyTT = EF.compute_entropy_UA_level_multiprocess(
+    UA_entropyFF, UA_entropyTT, per_res_df = EF.compute_entropy_UA_level_multiprocess(
         arg_hostDataContainer = dataContainer,
         arg_outFile = outfile,
         arg_selector = 'all', 
