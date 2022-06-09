@@ -3,6 +3,7 @@ import MDAnalysis as mda
 from CodeEntropy.FunctionCollection import EntropyFunctions as EF
 from CodeEntropy.ClassCollection import DataContainer as DC
 import numpy as np
+import pandas as pd
 import pytest
 
 def test_CodeEntropy_whole_molecule():
@@ -38,7 +39,6 @@ def test_CodeEntropy_res_level():
     fScale = 1.0
     temper = 300.0 #K
     u = mda.Universe(tprfile, trrfile)
-    thread = 8
     axis_list = ["C5'", "C4'", "C3'"]
     dataContainer = DC.DataContainer(u)
     res_entropyFF, res_entropyTT = EF.compute_entropy_residue_level(
@@ -56,6 +56,7 @@ def test_CodeEntropy_res_level():
     assert res_entropyFF == pytest.approx(194.93511803752938)
     assert res_entropyTT == pytest.approx(285.7213867860228)
 
+
 def test_CodeEntropy_united_atom_level():
     """test for computing entropy at united atom level"""
     data_dir = os.path.dirname(os.path.abspath(__file__))
@@ -65,10 +66,9 @@ def test_CodeEntropy_united_atom_level():
     fScale = 1.0
     temper = 300.0 #K
     u = mda.Universe(tprfile, trrfile)
-    thread = 8
     axis_list = ["C5'", "C4'", "C3'"]
     dataContainer = DC.DataContainer(u)
-    UA_entropyFF, UA_entropyTT = EF.compute_entropy_UA_level(
+    UA_entropyFF, UA_entropyTT, res_df = EF.compute_entropy_UA_level(
         arg_hostDataContainer = dataContainer,
         arg_outFile = None,
         arg_selector = 'all', 
@@ -81,9 +81,12 @@ def test_CodeEntropy_united_atom_level():
         arg_axis_list = axis_list,
         arg_csv_out= None,
     )
-
+    
     assert UA_entropyFF == pytest.approx(1439.501746003283)
     assert UA_entropyTT == pytest.approx(107.67610435497281)
+    data_dir = os.path.join(data_dir,"data/Atom_level_res_data.csv")
+    res_ref = pd.read_csv(data_dir, na_values="nan")
+    pd.testing.assert_frame_equal(res_ref, res_df)
 
 def test_CodeEntropy_united_atom_level_multiprocess():
     """test for computing entropy at united atom level with multiprocess"""
@@ -97,7 +100,7 @@ def test_CodeEntropy_united_atom_level_multiprocess():
     thread = 2
     axis_list = ["C5'", "C4'", "C3'"]
     dataContainer = DC.DataContainer(u)
-    UA_entropyFF, UA_entropyTT = EF.compute_entropy_UA_level_multiprocess(
+    UA_entropyFF, UA_entropyTT, res_df = EF.compute_entropy_UA_level_multiprocess(
         arg_hostDataContainer = dataContainer,
         arg_outFile = None,
         arg_selector = 'all', 
@@ -113,6 +116,9 @@ def test_CodeEntropy_united_atom_level_multiprocess():
     )
     assert UA_entropyFF == pytest.approx(1439.5017460032827)
     assert UA_entropyTT == pytest.approx(107.67610435497281)
+    data_dir = os.path.join(data_dir,"data/Atom_level_res_data.csv")
+    res_ref = pd.read_csv(data_dir, na_values="nan")
+    pd.testing.assert_frame_equal(res_ref, res_df)
 
 def test_CodeEntropy_topo_method5():
     """test for computing topographical entroy using method 5 AEM method. AEM is random so it is impossible to make test accurately"""

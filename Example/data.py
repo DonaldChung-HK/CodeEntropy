@@ -14,24 +14,26 @@ from CodeEntropy.FunctionCollection import EntropyFunctions as EF
 from CodeEntropy.ClassCollection import DataContainer as DC
 
 data_dir = os.path.dirname(os.path.abspath(__file__))
-tprfile = os.path.join(data_dir,"data/1AKI_ws.tpr")
-trrfile = os.path.join(data_dir,"data/1AKI_ws.trr")
+tprfile = os.path.join(data_dir,"data/md_A4_dna.tpr")
+trrfile = os.path.join(data_dir,"data/md_A4_dna_xf.trr")
+tScale = 1.0
+fScale = 1.0
+temper = 300.0 #K
 u = mda.Universe(tprfile, trrfile)
+thread = 8
+axis_list = ["C5'", "C4'", "C3'"]
 dataContainer = DC.DataContainer(u)
-result_entropy1_BB = EF.compute_topographical_entropy1_BB(
-    arg_hostDataContainer = dataContainer, 
-    arg_selector = "all",
-    arg_outFile = None, 
-    arg_verbose = 0
+UA_entropyFF, UA_entropyTT, res_df = EF.compute_entropy_UA_level(
+    arg_hostDataContainer = dataContainer,
+    arg_outFile = None,
+    arg_selector = 'all', 
+    arg_moutFile = None,
+    arg_nmdFile = None,
+    arg_fScale = fScale,
+    arg_tScale = tScale,
+    arg_temper = temper,
+    arg_verbose = 1,
+    arg_axis_list = axis_list,
+    arg_csv_out= "Atom_level_res_data.csv",
 )
-
-print(f"result_entropy1_BB = {result_entropy1_BB}")
-
-result_entropy1_SC = EF.compute_topographical_entropy1_SC(
-    arg_hostDataContainer = dataContainer, 
-    arg_selector = "all",
-    arg_outFile = None, 
-    arg_verbose = 0
-)
-
-print(f"result_entropy1_Sc = {result_entropy1_SC}")
+print (res_df)
