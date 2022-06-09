@@ -86,7 +86,7 @@ def test_CodeEntropy_united_atom_level():
     assert UA_entropyTT == pytest.approx(107.67610435497281)
     data_dir = os.path.join(data_dir,"data/Atom_level_res_data.csv")
     res_ref = pd.read_csv(data_dir, na_values="nan")
-    pd.testing.assert_frame_equal(res_ref, res_df)
+    pd.testing.assert_frame_equal(res_ref, res_df, check_dtype=False)
 
 def test_CodeEntropy_united_atom_level_multiprocess():
     """test for computing entropy at united atom level with multiprocess"""
@@ -118,7 +118,7 @@ def test_CodeEntropy_united_atom_level_multiprocess():
     assert UA_entropyTT == pytest.approx(107.67610435497281)
     data_dir = os.path.join(data_dir,"data/Atom_level_res_data.csv")
     res_ref = pd.read_csv(data_dir, na_values="nan")
-    pd.testing.assert_frame_equal(res_ref, res_df)
+    pd.testing.assert_frame_equal(res_ref, res_df, check_dtype=False)
 
 def test_CodeEntropy_topo_method5():
     """test for computing topographical entroy using method 5 AEM method. AEM is random so it is impossible to make test accurately"""
