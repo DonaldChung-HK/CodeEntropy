@@ -54,3 +54,18 @@ def test_poseidon_atomLevel():
     data_dir_contact = os.path.join(wd,"data/resid_contact_matrix_atomLevel.csv")
     contact_ref = pd.read_csv(data_dir_contact, na_values="nan")
     pd.testing.assert_frame_equal(contact_ref, result["atomLevel"]["contactMatrix"], check_dtype=False)
+
+def test_poseidon_soluteContacts():
+    start = dt.datetime.now()
+    wd = os.path.dirname(os.path.abspath(__file__))
+    topo_file = os.path.join(wd,"data/poseidon_example.prmtop")
+    traj_file = os.path.join(wd,"data/poseidon_example.trr")
+    u = mda.Universe(topo_file, traj_file)
+    poseidon_object = Poseidon(container=u, start=2, end=12)
+    result = poseidon_object.run_analysis(level_list = ['soluteContacts'], verbose=False)
+    data_dir_solute = os.path.join(wd,"data/soluteVariables10.0EE_soluteContacts.csv")
+    solute_ref = pd.read_csv(data_dir_solute, na_values="nan")
+    pd.testing.assert_frame_equal(solute_ref, result["soluteContacts"]["soluteData"], check_dtype=False)
+    data_dir_solvent = os.path.join(wd,"data/solventVariables10.0EE_soluteContacts.csv")
+    solvent_ref = pd.read_csv(data_dir_solvent, na_values="nan")
+    pd.testing.assert_frame_equal(solvent_ref, result["soluteContacts"]["solventData"], check_dtype=False)
