@@ -4,73 +4,8 @@ import datetime as dt
 from CodeEntropy.ClassCollection.PoseidonClass import Poseidon
 import pandas as pd
 import pytest
-from numpy import array
+from numpy import array, testing
 
-# def test_poseidon_moleculeLevel():
-#     start = dt.datetime.now()
-#     wd = os.path.dirname(os.path.abspath(__file__))
-#     topo_file = os.path.join(wd,"data/poseidon_example.prmtop")
-#     traj_file = os.path.join(wd,"data/poseidon_example.trr")
-#     u = mda.Universe(topo_file, traj_file)
-#     poseidon_object = Poseidon(container=u, start=2, end=12)
-#     result = poseidon_object.run_analysis(level_list = ['moleculeLevel'], verbose=False)
-#     data_dir_solute = os.path.join(wd,"data/soluteVariables10.0EE_moleculeLevel.csv")
-#     solute_ref = pd.read_csv(data_dir_solute, na_values="nan")
-#     pd.testing.assert_frame_equal(solute_ref, result["moleculeLevel"]["soluteData"], check_dtype=False)
-#     data_dir_solvent = os.path.join(wd,"data/solventVariables10.0EE_moleculeLevel.csv")
-#     solvent_ref = pd.read_csv(data_dir_solvent, na_values="nan")
-#     pd.testing.assert_frame_equal(solvent_ref, result["moleculeLevel"]["solventData"], check_dtype=False)
-    
-# def test_poseidon_residLevel_resname():
-#     start = dt.datetime.now()
-#     wd = os.path.dirname(os.path.abspath(__file__))
-#     topo_file = os.path.join(wd,"data/poseidon_example.prmtop")
-#     traj_file = os.path.join(wd,"data/poseidon_example.trr")
-#     u = mda.Universe(topo_file, traj_file)
-#     poseidon_object = Poseidon(container=u, start=2, end=12)
-#     result = poseidon_object.run_analysis(level_list = ['residLevel_resname'], verbose=False)
-#     data_dir_solute = os.path.join(wd,"data/soluteVariables10.0EE_residLevel_resname.csv")
-#     solute_ref = pd.read_csv(data_dir_solute, na_values="nan")
-#     pd.testing.assert_frame_equal(solute_ref, result["residLevel_resname"]["soluteData"], check_dtype=False)
-#     data_dir_solvent = os.path.join(wd,"data/solventVariables10.0EE_residLevel_resname.csv")
-#     solvent_ref = pd.read_csv(data_dir_solvent, na_values="nan")
-#     pd.testing.assert_frame_equal(solvent_ref, result["residLevel_resname"]["solventData"], check_dtype=False)
-#     data_dir_contact = os.path.join(wd,"data/resid_contact_matrix_residLevel_resname.csv")
-#     contact_ref = pd.read_csv(data_dir_contact, na_values="nan")
-#     pd.testing.assert_frame_equal(contact_ref, result["residLevel_resname"]["contactMatrix"], check_dtype=False)
-
-# def test_poseidon_atomLevel():
-#     start = dt.datetime.now()
-#     wd = os.path.dirname(os.path.abspath(__file__))
-#     topo_file = os.path.join(wd,"data/poseidon_example.prmtop")
-#     traj_file = os.path.join(wd,"data/poseidon_example.trr")
-#     u = mda.Universe(topo_file, traj_file)
-#     poseidon_object = Poseidon(container=u, start=2, end=12)
-#     result = poseidon_object.run_analysis(level_list = ['atomLevel'], verbose=False)
-#     data_dir_solute = os.path.join(wd,"data/soluteVariables10.0EE_atomLevel.csv")
-#     solute_ref = pd.read_csv(data_dir_solute, na_values="nan")
-#     pd.testing.assert_frame_equal(solute_ref, result["atomLevel"]["soluteData"], check_dtype=False)
-#     data_dir_solvent = os.path.join(wd,"data/solventVariables10.0EE_atomLevel.csv")
-#     solvent_ref = pd.read_csv(data_dir_solvent, na_values="nan")
-#     pd.testing.assert_frame_equal(solvent_ref, result["atomLevel"]["solventData"], check_dtype=False)
-#     data_dir_contact = os.path.join(wd,"data/resid_contact_matrix_atomLevel.csv")
-#     contact_ref = pd.read_csv(data_dir_contact, na_values="nan")
-#     pd.testing.assert_frame_equal(contact_ref, result["atomLevel"]["contactMatrix"], check_dtype=False)
-
-# def test_poseidon_soluteContacts():
-#     start = dt.datetime.now()
-#     wd = os.path.dirname(os.path.abspath(__file__))
-#     topo_file = os.path.join(wd,"data/poseidon_example.prmtop")
-#     traj_file = os.path.join(wd,"data/poseidon_example.trr")
-#     u = mda.Universe(topo_file, traj_file)
-#     poseidon_object = Poseidon(container=u, start=2, end=12)
-#     result = poseidon_object.run_analysis(level_list = ['soluteContacts'], verbose=False)
-#     data_dir_solute = os.path.join(wd,"data/soluteVariables10.0EE_soluteContacts.csv")
-#     solute_ref = pd.read_csv(data_dir_solute, na_values="nan")
-#     pd.testing.assert_frame_equal(solute_ref, result["soluteContacts"]["soluteData"], check_dtype=False)
-#     data_dir_solvent = os.path.join(wd,"data/solventVariables10.0EE_soluteContacts.csv")
-#     solvent_ref = pd.read_csv(data_dir_solvent, na_values="nan")
-#     pd.testing.assert_frame_equal(solvent_ref, result["soluteContacts"]["solventData"], check_dtype=False)
 @pytest.fixture(scope='session')
 def wd():
     wd = os.path.dirname(os.path.abspath(__file__))
@@ -298,6 +233,7 @@ def parser_ref():
     ]
     return parser_ref
 
+# the reason for testing individually is to allow identification of which value went wrong
 @pytest.mark.parametrize("ref_index,test_id",
     parser_ref_index
 )
@@ -333,6 +269,88 @@ def test_poseidon_parser_resname(poseidon_object, parser_ref, ref_index,test_id)
     testing the return of allMoleculeList index 3 which store the resname
     """
     assert poseidon_object.allMoleculeList[test_id][3] == parser_ref[ref_index][3]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_resid(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 4 which store the resid
+    """
+    assert poseidon_object.allMoleculeList[test_id][4] == parser_ref[ref_index][4]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_bondedUA_H(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 5 which store the bondedUA_H which is a tuple of [num_bondedUAs, num_bonded Hs]
+    """
+    assert poseidon_object.allMoleculeList[test_id][5] == parser_ref[ref_index][5]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_molecule_atomNums(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 6 which store the list of bonded UA atom nums
+    """
+    assert poseidon_object.allMoleculeList[test_id][6] == parser_ref[ref_index][6]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_nearestInfo(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 7 which store the list of nearest non like neighbour in a tuple of (atom_name, resname, resid, distance)
+    """
+    assert poseidon_object.allMoleculeList[test_id][7] == parser_ref[ref_index][7]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_hydrationShellRAD_solute(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 8 which store the list of nearest solute molecule centric
+    """
+    assert poseidon_object.allMoleculeList[test_id][8] == parser_ref[ref_index][8]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_RAD_shell_ranked(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 9 which store the list of 3 tuple (RAD shell ranked, acceptors ranked, donors ranked by RAD)
+    """
+    assert poseidon_object.allMoleculeList[test_id][9] == parser_ref[ref_index][9]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_MweightedForces(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 10 which store the MweightedForces
+    """
+    #numpy can't compare 2 None type stuff
+    if not parser_ref[ref_index][10] is None:
+        testing.assert_array_almost_equal(poseidon_object.allMoleculeList[test_id][10], parser_ref[ref_index][10])
+    else:
+        assert poseidon_object.allMoleculeList[test_id][10] == parser_ref[ref_index][10]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_MweightedTorques(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 11 which store the MweightedTorques
+    """
+    #numpy can't compare 2 None type stuff
+    if not parser_ref[ref_index][11] is None:
+        testing.assert_array_almost_equal(poseidon_object.allMoleculeList[test_id][11], parser_ref[ref_index][11])
+    else:
+        assert poseidon_object.allMoleculeList[test_id][11] == parser_ref[ref_index][11]
+
+
 
 def test_poseidon_moleculeLevel(poseidon_object, wd):
     """
