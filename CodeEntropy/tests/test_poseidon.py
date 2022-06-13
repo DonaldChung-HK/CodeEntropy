@@ -331,7 +331,7 @@ def test_poseidon_parser_MweightedForces(poseidon_object, parser_ref, ref_index,
     """
     testing the return of allMoleculeList index 10 which store the MweightedForces
     """
-    #numpy can't compare 2 None type stuff
+    #numpy can't compare None type object
     if not parser_ref[ref_index][10] is None:
         testing.assert_array_almost_equal(poseidon_object.allMoleculeList[test_id][10], parser_ref[ref_index][10])
     else:
@@ -344,17 +344,97 @@ def test_poseidon_parser_MweightedTorques(poseidon_object, parser_ref, ref_index
     """
     testing the return of allMoleculeList index 11 which store the MweightedTorques
     """
-    #numpy can't compare 2 None type stuff
+    #numpy can't compare None type object
     if not parser_ref[ref_index][11] is None:
         testing.assert_array_almost_equal(poseidon_object.allMoleculeList[test_id][11], parser_ref[ref_index][11])
     else:
         assert poseidon_object.allMoleculeList[test_id][11] == parser_ref[ref_index][11]
 
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_UA_PKenergy(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 12 which store the UA_PKenergy should all be None as energy is out of scope
+    """
+    assert poseidon_object.allMoleculeList[test_id][12] == parser_ref[ref_index][12]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_UAweightedForces(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 13 which store the UAweightedForces
+    """
+    #numpy can't compare None type object
+    if not parser_ref[ref_index][13] is None:
+        testing.assert_array_almost_equal(poseidon_object.allMoleculeList[test_id][13], parser_ref[ref_index][13])
+    else:
+        assert poseidon_object.allMoleculeList[test_id][13] == parser_ref[ref_index][13]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_UAweightedTorques(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 14 which store the UAweightedTorques
+    """
+    #numpy can't compare None type object
+    if not parser_ref[ref_index][14] is None:
+        testing.assert_array_almost_equal(poseidon_object.allMoleculeList[test_id][14], parser_ref[ref_index][14])
+    else:
+        assert poseidon_object.allMoleculeList[test_id][14] == parser_ref[ref_index][14]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_dihedral_phi_type(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 15 which store the dihedral_phi_type a list of unique dihedral angles, in degrees
+    """
+    assert poseidon_object.allMoleculeList[test_id][15] == parser_ref[ref_index][15]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_molecule_UA_Fs(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 16 which store the molecule_UA_Fs
+    """
+    #numpy can't compare None type object
+    if not parser_ref[ref_index][16] is None:
+        testing.assert_array_almost_equal(poseidon_object.allMoleculeList[test_id][16], parser_ref[ref_index][16])
+    else:
+        assert poseidon_object.allMoleculeList[test_id][16] == parser_ref[ref_index][16]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_molecule_UA_Ts(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 17 which store the molecule_UA_Ts
+    """
+    #numpy can't compare None type object
+    if not parser_ref[ref_index][17] is None:
+        testing.assert_array_almost_equal(poseidon_object.allMoleculeList[test_id][17], parser_ref[ref_index][17])
+    else:
+        assert poseidon_object.allMoleculeList[test_id][17] == parser_ref[ref_index][17]
+
+@pytest.mark.parametrize("ref_index,test_id",
+    parser_ref_index
+)
+def test_poseidon_parser_RAD_nAtoms(poseidon_object, parser_ref, ref_index,test_id):
+    """
+    testing the return of allMoleculeList index 18 which store the RAD_nAtoms
+    """
+    assert poseidon_object.allMoleculeList[test_id][18] == parser_ref[ref_index][18]
+
+
 
 
 def test_poseidon_moleculeLevel(poseidon_object, wd):
     """
-    testing result of poseidon at molecule level
+    testing result of poseidon at moleculeLevel
     """
     result = poseidon_object.run_analysis(level_list = ['moleculeLevel'], verbose=False)
     data_dir_solute = os.path.join(wd,"data/soluteVariables10.0EE_moleculeLevel.csv")
@@ -365,6 +445,9 @@ def test_poseidon_moleculeLevel(poseidon_object, wd):
     pd.testing.assert_frame_equal(solvent_ref, result["moleculeLevel"]["solventData"], check_dtype=False)
     
 def test_poseidon_residLevel_resname(poseidon_object, wd):
+    """
+    testing result of poseidon at residLevel_resname level
+    """
     result = poseidon_object.run_analysis(level_list = ['residLevel_resname'], verbose=False)
     data_dir_solute = os.path.join(wd,"data/soluteVariables10.0EE_residLevel_resname.csv")
     solute_ref = pd.read_csv(data_dir_solute, na_values="nan")
@@ -377,6 +460,9 @@ def test_poseidon_residLevel_resname(poseidon_object, wd):
     pd.testing.assert_frame_equal(contact_ref, result["residLevel_resname"]["contactMatrix"], check_dtype=False)
 
 def test_poseidon_atomLevel(poseidon_object, wd):
+    """
+    testing result of poseidon at atomLevel
+    """
     result = poseidon_object.run_analysis(level_list = ['atomLevel'], verbose=False)
     data_dir_solute = os.path.join(wd,"data/soluteVariables10.0EE_atomLevel.csv")
     solute_ref = pd.read_csv(data_dir_solute, na_values="nan")
@@ -389,6 +475,9 @@ def test_poseidon_atomLevel(poseidon_object, wd):
     pd.testing.assert_frame_equal(contact_ref, result["atomLevel"]["contactMatrix"], check_dtype=False)
 
 def test_poseidon_soluteContacts(poseidon_object, wd):
+    """
+    testing result of poseidon at soluteContacts Level
+    """
     result = poseidon_object.run_analysis(level_list = ['soluteContacts'], verbose=False)
     data_dir_solute = os.path.join(wd,"data/soluteVariables10.0EE_soluteContacts.csv")
     solute_ref = pd.read_csv(data_dir_solute, na_values="nan")
