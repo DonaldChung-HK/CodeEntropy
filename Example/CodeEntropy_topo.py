@@ -6,9 +6,7 @@ Created on Tue Apr  5 14:13:07 2022
 """
 import os, sys
 import MDAnalysis as mda
-from CodeEntropy.FunctionCollection import Utils
 from CodeEntropy.FunctionCollection import EntropyFunctions
-from CodeEntropy.IO import InputParser, Writer 
 from CodeEntropy.ClassCollection import DataContainer as DC
 from datetime import datetime
 
@@ -84,12 +82,12 @@ if __name__ == "__main__":
     print(f"result_entropyAEM = {result_entropyAEM}")
 
     # # Demanding computation if large amount of Dihedral
-    result_entropy3 = EntropyFunctions.compute_topographical_entropy_method3(
-        arg_hostDataContainer = dataContainer, 
-        arg_selector = "all",
-        arg_outFile = outfile, 
-        arg_verbose = 5
-    ) 
-    print(f"result_entropy3 = {result_entropy3}")
+    # result_entropy3 = EntropyFunctions.compute_topographical_entropy_method3(
+    #     arg_hostDataContainer = dataContainer, 
+    #     arg_selector = "all",
+    #     arg_outFile = outfile, 
+    #     arg_verbose = 5
+    # ) 
+    # print(f"result_entropy3 = {result_entropy3}")
 
     print(datetime.now() - startTime)
