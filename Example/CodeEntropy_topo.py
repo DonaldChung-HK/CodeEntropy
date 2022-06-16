@@ -84,12 +84,12 @@ if __name__ == "__main__":
     print(f"result_entropyAEM = {result_entropyAEM}")
 
     # # Demanding computation if large amount of Dihedral
-    # result_entropy3 = EntropyFunctions.compute_topographical_entropy_method3(
-    #     arg_hostDataContainer = dataContainer, 
-    #     arg_selector = "all",
-    #     arg_outFile = outfile1_BB, 
-    #     arg_verbose = 5
-    # ) 
-    # print(f"result_entropy3 = {result_entropy3}")
+    result_entropy3 = EntropyFunctions.compute_topographical_entropy_method3(
+        arg_hostDataContainer = dataContainer, 
+        arg_selector = "all",
+        arg_outFile = outfile, 
+        arg_verbose = 5
+    ) 
+    print(f"result_entropy3 = {result_entropy3}")
 
     print(datetime.now() - startTime)

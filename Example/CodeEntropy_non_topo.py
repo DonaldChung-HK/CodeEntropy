@@ -78,7 +78,7 @@ if __name__ == "__main__":
     results_df = pd.concat([results_df, newRow], ignore_index=True)
 
 
-    UA_entropyFF, UA_entropyTT = EF.compute_entropy_UA_level(
+    UA_entropyFF, UA_entropyTT, res_df = EF.compute_entropy_UA_level(
         arg_hostDataContainer = dataContainer,
         arg_outFile = outfile,
         arg_selector = 'all', 
@@ -98,7 +98,7 @@ if __name__ == "__main__":
                             'result': [UA_entropyFF, UA_entropyTT],})
     results_df = pd.concat([results_df, newRow], ignore_index=True)
 
-    UA_entropyFF, UA_entropyTT = EF.compute_entropy_UA_level_multiprocess(
+    UA_entropyFF, UA_entropyTT, res_df = EF.compute_entropy_UA_level_multiprocess(
         arg_hostDataContainer = dataContainer,
         arg_outFile = outfile,
         arg_selector = 'all', 
