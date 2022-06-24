@@ -13,8 +13,8 @@ if __name__ == "__main__":
     ############## REPLACE INPUTS ##############
     startTime = datetime.now()
     data_dir = os.path.dirname(os.path.abspath(__file__))
-    tprfile = os.path.join(data_dir,"data/1AKI_prod.tpr")
-    trrfile = os.path.join(data_dir,"data/1AKI_prod.trr")
+    tprfile = os.path.join(data_dir,"data/1AKI_prod_60.tpr")
+    trrfile = os.path.join(data_dir,"data/1AKI_prod_60.trr")
     outfile = None
     tScale = 1.0
     fScale = 1.0
