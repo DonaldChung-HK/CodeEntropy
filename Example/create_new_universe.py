@@ -5,6 +5,7 @@ from MDAnalysis.coordinates.memory import MemoryReader
 # MDanalysis only supports reading force data from GROMACS TRR and AMBER NETCDF format
 # For other data such as LAMMPS you will have to make a universe by loading the data into it
 # This is also useful for trimming existing trajectories to reduce the size of system for faster analysis
+# The key is to have a topology file that contains dihedral information and output the packaged position and force data as a trr file
 # !!! you have to have a topology file that contains the dihedral information for MDAnalysis
 def load_data():
     # This is to set the working directory
