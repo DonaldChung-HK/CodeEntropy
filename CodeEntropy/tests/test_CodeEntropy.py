@@ -289,17 +289,17 @@ def test_CodeEntropy_topo_method5(dataContainer_protein):
     )
     assert 220.0 < result_entropyAEM < 230.0
 
-def test_CodeEntropy_topo_method3(dataContainer_DNA):
-    """test for computing topographical entroy using method 3 Correlation density method"""
-    result_entropy3 = EF.compute_topographical_entropy_method3(
-        arg_hostDataContainer = dataContainer_DNA, 
-        arg_selector = "all",
-        arg_outFile = None, 
-        arg_verbose = 5
-    ) 
-    result = np.sum(result_entropy3)
-    reference = 211.99999999999983
-    assert reference == pytest.approx(result)
+# def test_CodeEntropy_topo_method3(dataContainer_DNA):
+#     """test for computing topographical entroy using method 3 Correlation density method"""
+#     result_entropy3 = EF.compute_topographical_entropy_method3(
+#         arg_hostDataContainer = dataContainer_DNA, 
+#         arg_selector = "all",
+#         arg_outFile = None, 
+#         arg_verbose = 5
+#     ) 
+#     result = np.sum(result_entropy3)
+#     reference = 211.99999999999983
+#     assert reference == pytest.approx(result)
 
 def test_CodeEntropy_topo_method0_SC(dataContainer_protein):
     """test for computing topographical entroy using method 3 Correlation density method"""
