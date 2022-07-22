@@ -104,13 +104,15 @@ a Creative Commons Attribution 4.0 International License (CC BY
   Cell Correlation (MCC) method which is a novel solution to the
   problems encountered by other methods by providing a single, scalable
   and general framework applicable to all molecules in the system.</p>
-  <p><monospace>CodeEntropy</monospace> is a code based on a combination
+  <p><monospace>CodeEntropy</monospace> is a code that calculates
+  entropy with Multiscale Cell Correlation (MCC) method based on
+  molecular simulation trajectories. The code is based on a combination
   of <monospace>CodeEntropy</monospace>
   (<xref alt="Chakravorty, 2021" rid="ref-argoRepo" ref-type="bibr">Chakravorty,
   2021</xref>) by Dr Arghya Chakravorty and
   <monospace>POSEIDON</monospace>
   (<xref alt="Kalayan, 2021" rid="ref-jasRepo" ref-type="bibr">Kalayan,
-  2021</xref>) by Jas Kalayan. The code written by Arghya Chakravorty
+  2021</xref>) by Jas Kalayan. The code written by Dr Chakravorty
   accounts for the vibrational and conformational entropy in a
   multiscale formulation using an Applications Programming Interface
   that makes it highly customisable. To make
@@ -145,17 +147,17 @@ a Creative Commons Attribution 4.0 International License (CC BY
   providing a single, scalable and general framework applicable to all
   molecules in the system. It utilises a judicial synthesis of
   mean-field cell theory and covariance matrices over a range of length
-  scales: - Correlations are considered between groups of locally
+  scales: First, Correlations are considered between groups of locally
   connected atoms as in a mean-field cell, and longer-range correlations
   are accounted for using a coarser representation of the groups, a
-  framework that is scaled to higher length scales. - At each length
-  scale, the potential energy surface is discretised into energy wells
-  for translational and rotational motion. These are represented as an
-  average energy well and an energy-well distribution, denoted as
-  vibrational and topographical, respectively. - The decomposition over
-  molecules, length scales, type of motion and energy-well size and
-  distribution provides an exquisite level of detail in explaining the
-  entropies obtained</p>
+  framework that is scaled to higher length scales. Second, At each
+  length scale, the potential energy surface is discretised into energy
+  wells for translational and rotational motion. These are represented
+  as an average energy well and an energy-well distribution, denoted as
+  vibrational and topographical, respectively. Finally, The
+  decomposition over molecules, length scales, type of motion and
+  energy-well size and distribution provides an exquisite level of
+  detail in explaining the entropies obtained.</p>
   <p>MCC has been applied by the group of RH to a wide range of systems,
   namely liquids, aqueous and octanol solutions, host-guest complexes,
   chemical reactions and large biomolecules such as proteins, DNA and
