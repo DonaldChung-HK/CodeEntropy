@@ -22,8 +22,8 @@ except:
 setup(
     # Self-descriptive entries which should always be present
     name='CodeEntropy',
-    author='Arghya \"Argo\" Chakravorty, DonaldChung-HK',
-    author_email='arghyac@umich.edu, lpchungaa@gmail.com',
+    author='Arghya \"Argo\" Chakravorty, Jas Kalayan, DonaldChung-HK',
+    author_email='arghyac@umich.edu, jas.kalayan@manchester.ac.uk, donald.chung@stfc.ac.uk',
     description=short_description,
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -56,19 +56,20 @@ setup(
     # Manual control if final package is compressible or not, set False to prevent the .egg from being made
     # zip_safe=False,
     ## REQUIREMENTS ##
-	classifiers = ['Programming Language :: Python :: 3.9',
-	               'Intended Audience :: Users'],
+	classifiers = ['Programming Language :: Python :: 3',
+	               'Intended Audience :: Science/Research'],
 
 	# can be run as a zip
 	zip_safe = False,
 
     install_requires=[
-        'numpy',
-        'bitarray',
-        'mdanalysis',
-        'pandas',
-        'psutil',
-        'dill'
+        'numpy==1.22.3',
+        'bitarray==2.5.0',
+        'mdanalysis==2.1.0',
+        'pandas==1.4.2',
+        'psutil==5.9.0',
+        'dill==0.3.5.1',
+        'pathos==0.2.9',
     ],
 
     scripts=['scripts/CodeEntropyPoseidon']

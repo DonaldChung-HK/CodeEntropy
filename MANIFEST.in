@@ -5,3 +5,5 @@ include versioneer.py
 
 graft CodeEntropy
 global-exclude *.py[cod] __pycache__ *.so
+
+prune CodeEntropy/tests/*

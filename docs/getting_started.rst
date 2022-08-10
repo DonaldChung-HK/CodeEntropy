@@ -3,7 +3,8 @@ Getting Started
 
 Requirements
 ----------------
-* Python >3.9
+
+* Python > 3.9
 * gcc
 * g++
 
@@ -13,7 +14,13 @@ Run the following at the root directory of this repository
 
 .. code-block:: bash
     
-    pip install .
+    pip install CodeEntropy
+
+Input
+----------
+For supported format (AMBER NETCDF and GROMACS TRR) you will need to output the **coordinates** and **forces** to the **same file**.
+
+For unsupported format see :ref:`load-custom` for ideas on how to load custom data into MDanalysis universe and convert to supported format.
 
 Units
 ------------
@@ -54,10 +61,6 @@ For help
 Arguments
 ^^^^^^^^^^^^^
 
-.. Warning::
-
-    Method 3 and 4 for topographical analysis is still in development!!!
-
 .. list-table:: Arguments
    :widths: 20 30 10 10
    :class: tight-table
@@ -68,7 +71,7 @@ Arguments
      - Default
      - Type
    * - ``-f``, ``--top_traj_file`` 
-     - Path to Structure/topology file(``AMBER PRMTOP``, ``GROMACS TPR`` or topology file with MDAnalysis readable dihedral information (not officially supported)) followed by Trajectory file(s) (``GROMAC TRR`` or ``AMBER NETCDF``)
+     - Path to Structure/topology file(``AMBER PRMTOP``, ``GROMACS TPR`` or topology file with MDAnalysis readable dihedral information (not officially supported)) followed by Trajectory file(s) (``GROMAC TRR`` or ``AMBER NETCDF``) You will need to output the **coordinates** and **forces** to the **same file** . 
      - Required
      - list of ``str`` 
    * - ``-l``, ``--selectString``
@@ -155,7 +158,7 @@ Arguments
      - Compute the topographical entropy using :  
         * 1 : pLogP method (will separate between backbone and side chain)
         * 2 : Corr. pLogP method (will separate between backbone and side chain)
-        * 5 : Corr. pLogP after adaptive enumeration of states
+        * 3 : Corr. pLogP after adaptive enumeration of states
      -  ``0`` : no topographical analysis 
      -  ``int``
    * - ``--solwm``
@@ -182,7 +185,7 @@ Example
 .. code-block:: bash
     
     # example 1 DNA
-    CodeEntropyPoseidon -f "Example/data/md_A4_dna.tpr" "Example/data/md_A4_dna_xf.trr" -a "C5'" "C4'" "C3'" -l "all" -t 8 --wm --res --uatom --topog 5
+    CodeEntropyPoseidon -f "Example/data/md_A4_dna.tpr" "Example/data/md_A4_dna_xf.trr" -a "C5'" "C4'" "C3'" -l "all" -t 8 --wm --res --uatom --topog 3
 
     # example 2 lysozyme in water
     CodeEntropyPoseidon -f "Example/data/1AKI_prod_60.tpr" "Example/data/1AKI_prod_60.trr" -l "protein" -b 1 -e 30 -d 2 --wm --res --uatom --topog 1 --solwm --solres --soluatom --solContact

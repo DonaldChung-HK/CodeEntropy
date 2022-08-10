@@ -1,12 +1,7 @@
 CodeEntropy
 ==============================
-!!! This repo is now moved to [CCPBioSim/CodeEntropy](https://github.com/CCPBioSim/CodeEntropy). Please check there for the latest version.
-
-
-
 [//]: # (Badges)
-[![GitHub Actions Build Status](https://github.com/DonaldChung-HK/CodeEntropy/workflows/CI/badge.svg)](https://github.com/DonaldChung-HK/CodeEntropy/actions?query=workflow%3ACI)
-[![codecov](https://codecov.io/gh/DonaldChung-HK/CodeEntropy/branch/main/graph/badge.svg)](https://codecov.io/gh/DonaldChung-HK/CodeEntropy/branch/main)
+[![GitHub Actions Build Status](https://github.com/CCPBioSim/CodeEntropy/workflows/CI/badge.svg)](https://github.com/CCPBioSim/CodeEntropy/actions?query=workflow%3ACI)
 
 
 CodeEntropy tool with POSEIDON code integrated to form a complete and generally applicable set of tools for calculating entropy
@@ -21,8 +16,13 @@ See [CodeEntropy’s documentation](https://codeentropy.readthedocs.io/en/latest
 
 ### Install via
 ```
-pip install .
+pip install CodeEntropy
 ```
+
+### Input
+For supported format (AMBER NETCDF and GROMACS TRR) you will need to output the **coordinates** and **forces** to the **same file**.
+
+See [Format overview — MDAnalysis User Guide documentation](https://userguide.mdanalysis.org/stable/formats/index.html)
 
 ### Command-line tool
 A quick and easy way to get started is to use the command-line tool which you can run in bash by simply typing `CodeEntropyPoseidon` (Note: this doesn't work on Windows!!!)
@@ -33,11 +33,11 @@ CodeEntropyPoseidon -h
 #### Arguments
 | Arguments  | Description | Default | type|
 | ------------- | ------------- |----------- |--------------|
-| `-f`, `--top_traj_file`  | Path to Structure/topology file (AMBER PRMTOP or GROMACS TPR) followed by Trajectory file(s)  | Requires either `--top_traj_file` or `--pickle`  | list of `str` |
+| `-f`, `--top_traj_file`  | Path to Structure/topology file (AMBER PRMTOP or GROMACS TPR) followed by Trajectory file(s) (AMBER NETCDF or GROMACS TRR). You will need to output the **coordinates** and **forces** to the **same file**  | Require at least 2 file: a topology and a trajectory file | list of `str` |
 | `-l`, `--selectString`  | Selection string for CodeEntropy such as protein or resid, refer to `MDAnalysis.select_atoms` for more information. | `"all"`: select all atom in trajectory for CodeEntropy analysis for trajectory without solvent  | `str` |
 | `-b`, `--begin`  | Start analysing the trajectory from this frame index. | `0`: From begining | `int` |
 | `-e`, `--end`  | Stop analysing the trajectory at this frame index | `-1`: end of trajectory | `int` |
-| `-d`, `--step`  | Stop analysing the trajectory at this frame index | `1` | `int` |
+| `-d`, `--step`  | Steps between frame | `1` | `int` |
 | `-k`, `--tempra`  | Temperature for entropy calculation (K) | `298.0` | `float` |
 | `-t`, `--thread`  | How many multiprocess to use. | `1`: for single core execution | `int` |
 | `-o`, `--out`  | Name of the file where the text format output will be written. | `outfile.out` | `str` |
@@ -54,15 +54,16 @@ CodeEntropyPoseidon -h
 | `--wm`  | Do entropy calculation at whole molecule level (The whole molecule is treated as one single bead.).  | Flag, activate when included | Flag |
 | `--res`  | Do entropy calculation at residue level (A residue as a whole represents a bead.).  | Flag, activate when included | Flag |
 | `--uatom`  | Do entropy calculation at united atom level (A heavy atom and its covalently bonded H-atoms for an united atom and represent a bead.).  | Flag, activate when included | Flag |
-| `--topog`  | Compute the topographical entropy using  <ul><li>1 : pLogP method (will separate between backbone and side chain)</li><li>2: Corr. pLogP method (will separate between backbone and side chain)</li><li>3: Corr. density function (only output LamdaRho)</li><li>4: Phi Coeff method (not functional!!) </li><li>5: Corr. pLogP after adaptive enumeration of states</li></ul> | `0`: no topographical analysis | `int` |
+| `--topog`  | Compute the topographical entropy using  <ul><li>1 : pLogP method (will separate between backbone and side chain)</li><li>2: Corr. pLogP method (will separate between backbone and side chain)</li><li>3: Corr. pLogP after adaptive enumeration of states</li></ul> | `0`: no topographical analysis | `int` |
 | `--solwm`  | Do water entropy calculation at residue level (The whole molecule is treated as one single bead.).  | Flag, activate when included | Flag |
 | `--solres`  | Do water entropy calculation at residue level (A residue as a whole represents a bead.  | Flag, activate when included | Flag |
 | `--soluatom`  | Do solution entropy calculation at united atom level (A heavy atom and its covalently bonded H-atoms for an united atom and represent a bead.).  | Flag, activate when included | Flag |
 | `--solContact`  | Do solute contact calculation.  | Flag, activate when included | Flag |
 #### Example 
+You need to clone this repository to download example trajectories.
 ```
 # example 1 DNA
-CodeEntropyPoseidon -f "Example/data/md_A4_dna.tpr" "Example/data/md_A4_dna_xf.trr" -a "C5'" "C4'" "C3'" -l "all" -t 8 --wm --res --uatom --topog 5
+CodeEntropyPoseidon -f "Example/data/md_A4_dna.tpr" "Example/data/md_A4_dna_xf.trr" -a "C5'" "C4'" "C3'" -l "all" -t 8 --wm --res --uatom --topog 3
 
 # example 2 lysozyme in water
 CodeEntropyPoseidon -f "Example/data/1AKI_prod_60.tpr" "Example/data/1AKI_prod_60.trr" -l "protein" -b 1 -e 30 -d 2 --wm --res --uatom --topog 1 --solwm --solres --soluatom --solContact
@@ -78,29 +79,9 @@ The program assumes the following default unit
 | mass | u |
 | force | kJ/(mol·Å) |
 
-## Script Examples
-See `Example` folder
-You can add your own trajectories by editing the path in the python script to point to your own trajectories
-### `create_new_universe.py`
-This repo uses MDAnalysis to parse values and it can only parse force natively for GROMACS TRR and AMBER NETCDF. This scripts shows you how to create a new universe from unsuppported data so that you can use trajectories created from other simulation software or reduce the size of universe to focus on a section of simulation.
-### `CodeEntropy_non_topo.py`
-Calculate entropy of target trajectory non topographical level with a no water lysozyme trajectory
-### `CodeEntropy_topo.py`
-Calculate entropy of target trajectory based on different method with a no water lysozyme trajectory
-### `Poseidon_GROMACS`
-Run POSEIDON analysis for a GROMACS trajectories with a lysozyme in water
-### `Poseidon_LAMMPS`
-A LAMMPS example for POSEIDON this is a capped amino acid example (note the force unit of this trajectory is based on KCal not KJ)
-### `mcc_mdanalysis`
-A DNA example for CodeEntropy without using function to show the inner working of CodeEntropy
-### `mcc_mdanalysis_multiprocess`
-mcc_mdanalysis with multiprocess parallelization 
-### `CodeEntropy_DNA.py`
-the DNA strand example but with updated generalized CodeEntropy functions
-
 ## Copyright
 
-Copyright (c) 2022, DonaldChung-HK
+Copyright (c) 2022, DonaldChung-HK, CCPBioSim
 
 
 ## Acknowledgements

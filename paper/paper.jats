@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.2 20190208//EN"
+                  "JATS-publishing1.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="other">
+<front>
+<journal-meta>
+<journal-id></journal-id>
+<journal-title-group>
+<journal-title>Journal of Open Source Software</journal-title>
+<abbrev-journal-title>JOSS</abbrev-journal-title>
+</journal-title-group>
+<issn publication-format="electronic">2475-9066</issn>
+<publisher>
+<publisher-name>Open Journals</publisher-name>
+</publisher>
+</journal-meta>
+<article-meta>
+<article-id pub-id-type="publisher-id">0</article-id>
+<article-id pub-id-type="doi">N/A</article-id>
+<title-group>
+<article-title>CodeEntropy: A Python package for Multiscale Entropy and
+Structure Quantification from Molecular Dynamics
+Simulation</article-title>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author" equal-contrib="yes">
+<name>
+<surname>Chakravorty</surname>
+<given-names>Arghya</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+</contrib>
+<contrib contrib-type="author" equal-contrib="yes">
+<name>
+<surname>Kalayan</surname>
+<given-names>Jas</given-names>
+</name>
+<xref ref-type="aff" rid="aff-2"/>
+</contrib>
+<contrib contrib-type="author" equal-contrib="yes">
+<name>
+<surname>Chung</surname>
+<given-names>Donald</given-names>
+</name>
+<xref ref-type="aff" rid="aff-3"/>
+</contrib>
+<aff id="aff-1">
+<institution-wrap>
+<institution>University of Michigan, Ann Arbor, USA</institution>
+</institution-wrap>
+</aff>
+<aff id="aff-2">
+<institution-wrap>
+<institution>University of Manchester, United Kingdom</institution>
+</institution-wrap>
+</aff>
+<aff id="aff-3">
+<institution-wrap>
+<institution>Science and Technology Facilities Council, United
+Kingdom</institution>
+</institution-wrap>
+</aff>
+</contrib-group>
+<pub-date date-type="pub" publication-format="electronic" iso-8601-date="2022-07-21">
+<day>21</day>
+<month>7</month>
+<year>2022</year>
+</pub-date>
+<volume>¿VOL?</volume>
+<issue>¿ISSUE?</issue>
+<fpage>¿PAGE?</fpage>
+<permissions>
+<copyright-statement>Authors of papers retain copyright and release the
+work under a Creative Commons Attribution 4.0 International License (CC
+BY 4.0)</copyright-statement>
+<copyright-year>2022</copyright-year>
+<copyright-holder>The article authors</copyright-holder>
+<license license-type="open-access" xlink:href="https://creativecommons.org/licenses/by/4.0/">
+<license-p>Authors of papers retain copyright and release the work under
+a Creative Commons Attribution 4.0 International License (CC BY
+4.0)</license-p>
+</license>
+</permissions>
+<kwd-group kwd-group-type="author">
+<kwd>Python</kwd>
+<kwd>entropy</kwd>
+<kwd>molecular dynamics</kwd>
+<kwd>molecular simulations</kwd>
+</kwd-group>
+</article-meta>
+</front>
+<body>
+<sec id="summary">
+  <title>Summary</title>
+  <p>Entropy is a fundamental property of any system that quantifies the
+  structural flexibility of the system and together with energy governs
+  system stability. It is particularly important in biomolecular systems
+  because of their highly flexible and complex nature. Many properties
+  are a delicate balance of entropy versus energy, necessitating the
+  determination of entropy in order to understand stability. Moreover,
+  entropy provides a way to quantify the structural flexibility of a
+  system over all its degrees of freedom.
+  <monospace>CodeEntropy</monospace> is a code based on the Multiscale
+  Cell Correlation (MCC) method which is a novel solution to the
+  problems encountered by other methods by providing a single, scalable
+  and general framework applicable to all molecules in the system.</p>
+  <p><monospace>CodeEntropy</monospace> is a code that calculates
+  entropy with Multiscale Cell Correlation (MCC) method based on
+  molecular simulation trajectories. The code is based on a combination
+  of <monospace>CodeEntropy</monospace>
+  (<xref alt="Chakravorty, 2021" rid="ref-argoRepo" ref-type="bibr">Chakravorty,
+  2021</xref>) by Dr Arghya Chakravorty and
+  <monospace>POSEIDON</monospace>
+  (<xref alt="Kalayan, 2021" rid="ref-jasRepo" ref-type="bibr">Kalayan,
+  2021</xref>) by Jas Kalayan. The code written by Dr Chakravorty
+  accounts for the vibrational and conformational entropy in a
+  multiscale formulation using an Applications Programming Interface
+  that makes it highly customisable. To make
+  <monospace>CodeEntropy</monospace> fully applicable to biomolecular
+  systems, the <monospace>POSEIDON</monospace> code will calculate the
+  topographical entropy terms for solvents and mixtures. The
+  topology/trajectory parser, atom selector and distance calculation is
+  performed by the <monospace>MDAnalysis</monospace>
+  (<xref alt="Gowers et al., 2016" rid="ref-mda2" ref-type="bibr">Gowers
+  et al., 2016</xref>;
+  <xref alt="Michaud-Agrawal et al., 2011" rid="ref-mda1" ref-type="bibr">Michaud-Agrawal
+  et al., 2011</xref>) package.</p>
+</sec>
+<sec id="statement-of-needs">
+  <title>Statement of needs</title>
+  <p>There are a range of existing methods to calculate entropy from
+  molecular dynamics simulations but they suffer from a number of
+  limitations: they may only work for particular kinds of system or
+  degrees of freedom, they may require additional calculations, they can
+  be difficult to interpret, or they do not scale well to large and
+  complex systems. Some methods only work for water, such as
+  Inhomogeneous Solvation Theory, for liquids such as 2-Phase
+  Thermodynamics, for only some degrees of freedom such as dihedral
+  binning, or for single molecules such as Quasiharmonic Analysis,
+  Normal Mode Analysis or non-parametric methods such as Minimal
+  Spanning Tree or K-Nearest-Neighbours.</p>
+  <p>Given the widespread use of free-energy calculations and molecular
+  dynamics simulations, there is a large user-community for software to
+  calculate entropy and quantify full structural flexibility of
+  biomolecular systems. Multiscale Cell Correlation (MCC) provides a
+  novel solution to the problems encountered by other methods by
+  providing a single, scalable and general framework applicable to all
+  molecules in the system. It utilises a judicial synthesis of
+  mean-field cell theory and covariance matrices over a range of length
+  scales: First, Correlations are considered between groups of locally
+  connected atoms as in a mean-field cell, and longer-range correlations
+  are accounted for using a coarser representation of the groups, a
+  framework that is scaled to higher length scales. Second, At each
+  length scale, the potential energy surface is discretised into energy
+  wells for translational and rotational motion. These are represented
+  as an average energy well and an energy-well distribution, denoted as
+  vibrational and topographical, respectively. Finally, The
+  decomposition over molecules, length scales, type of motion and
+  energy-well size and distribution provides an exquisite level of
+  detail in explaining the entropies obtained.</p>
+  <p>MCC has been applied by the group of RH to a wide range of systems,
+  namely liquids, aqueous and octanol solutions, host-guest complexes,
+  chemical reactions and large biomolecules such as proteins, DNA and
+  membrane bilayers in aqueous electrolytes.</p>
+</sec>
+</body>
+<back>
+<ref-list>
+  <ref id="ref-mda2">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Gowers</surname><given-names>Richard</given-names></name>
+        <name><surname>Linke</surname><given-names>Max</given-names></name>
+        <name><surname>Barnoud</surname><given-names>Jonathan</given-names></name>
+        <name><surname>Reddy</surname><given-names>Tyler</given-names></name>
+        <name><surname>Melo</surname><given-names>Manuel</given-names></name>
+        <name><surname>Seyler</surname><given-names>Sean</given-names></name>
+        <name><surname>Domański</surname><given-names>Jan</given-names></name>
+        <name><surname>Dotson</surname><given-names>David</given-names></name>
+        <name><surname>Buchoux</surname><given-names>Sébastien</given-names></name>
+        <name><surname>Kenney</surname><given-names>Ian</given-names></name>
+        <name><surname>Beckstein</surname><given-names>Oliver</given-names></name>
+      </person-group>
+      <article-title>MDAnalysis: A python package for the rapid analysis of molecular dynamics simulations</article-title>
+      <source>Proceedings of the Python in Science Conference</source>
+      <year iso-8601-date="2016">2016</year>
+      <pub-id pub-id-type="doi">10.25080/majora-629e541a-00e</pub-id>
+    </element-citation>
+  </ref>
+  <ref id="ref-mda1">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Michaud-Agrawal</surname><given-names>Naveen</given-names></name>
+        <name><surname>Denning</surname><given-names>Elizabeth J.</given-names></name>
+        <name><surname>Woolf</surname><given-names>Thomas B.</given-names></name>
+        <name><surname>Beckstein</surname><given-names>Oliver</given-names></name>
+      </person-group>
+      <article-title>MDAnalysis: A toolkit for the analysis of molecular dynamics simulations</article-title>
+      <source>Journal of Computational Chemistry</source>
+      <year iso-8601-date="2011">2011</year>
+      <volume>32</volume>
+      <issue>10</issue>
+      <pub-id pub-id-type="doi">10.1002/jcc.21787</pub-id>
+      <fpage>2319</fpage>
+      <lpage>2327</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-argoRepo">
+    <element-citation>
+      <person-group person-group-type="author">
+        <name><surname>Chakravorty</surname><given-names>Arghya</given-names></name>
+      </person-group>
+      <article-title>CodeEntropy</article-title>
+      <source>GitHub repository</source>
+      <publisher-name>GitHub</publisher-name>
+      <year iso-8601-date="2021">2021</year>
+      <uri>https://github.com/arghya90/CodeEntropy</uri>
+    </element-citation>
+  </ref>
+  <ref id="ref-jasRepo">
+    <element-citation>
+      <person-group person-group-type="author">
+        <name><surname>Kalayan</surname><given-names>Jas</given-names></name>
+      </person-group>
+      <article-title>PoseidonBeta</article-title>
+      <source>GitHub repository</source>
+      <publisher-name>GitHub</publisher-name>
+      <year iso-8601-date="2021">2021</year>
+      <uri>https://github.com/jkalayan/PoseidonBeta</uri>
+    </element-citation>
+  </ref>
+</ref-list>
+</back>
+</article>
